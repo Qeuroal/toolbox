@@ -9,7 +9,7 @@ function toLower() {
     echo "$@" | tr '[:upper:]' '[:lower:]'
 }
 
-function colorprint() {
+function colorPrint() {
     mode="$1"
     # 左移一位
     shift 1
@@ -179,7 +179,7 @@ function getPasswd() {
 # 以 sudo 运行命令
 function sudorun() {
     cmd="$1"
-    colorprint "warn" "passwd: $passwd, run $cmd"
+    colorPrint "warn" "passwd: $passwd, run $cmd"
     if test "${cmd}" != ""; then
         echo "${passwd}" | bash -c "${cmd}"
     fi
@@ -252,7 +252,7 @@ function backupFile() {
     do
         fileName=$1
         if [ $(isExistFile "${fileName}") -eq 1 ]; then
-            colorprint "info" "backup file: ${fileName}"
+            colorPrint "info" "backup file: ${fileName}"
             cp -f ${fileName} ${fileName}.backup
         fi
 

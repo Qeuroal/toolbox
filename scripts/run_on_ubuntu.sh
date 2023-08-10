@@ -9,15 +9,15 @@ softwareInstallKeys=("0" "1" "2" "3" "4" "5" "6" "7" "8" "9" \
 # echo "softwareInstallKeys${#softwareInstallKeys[@]}: ${softwareInstallKeys[@]}"
 # 当前目录
 rootDir=${PWD}
-colorprint "info" "project root dir: $rootDir"
+colorPrint "info" "project root dir: $rootDir"
 
 function setProxy() {
     # judge exist proxy file
     if [ $(isExistFile "/etc/profile.d/proxy.sh") == 1 ]; then
-        colorprint "warning" "canceling to add proxy.sh"
+        colorPrint "warning" "canceling to add proxy.sh"
         return
     else
-        colorprint "info" "adding proxy.sh"
+        colorPrint "info" "adding proxy.sh"
     fi
 
     # generate proxy file
@@ -118,11 +118,11 @@ function prepare() {
 
     # get user info
     getUserInfo
-    colorprint "info" "userName: ${userName}"
+    colorPrint "info" "userName: ${userName}"
 
     # get ip
     getIp
-    colorprint "info" "ip: ${ipAddr}"
+    colorPrint "info" "ip: ${ipAddr}"
 
     # set proxy
     setProxy
@@ -144,7 +144,7 @@ function installClash() {
     chmod +x ${rootDir}/resource/clash
     sudorun "sudo -S mv ${rootDir}/resource/clash /usr/local/bin/"
 
-    colorprint "warning" "Please do following steps:"
+    colorPrint "warning" "Please do following steps:"
     echo " 1. 执行 clash 进行初始化"
     echo " 2. 生成配置文件 ~/.config/clash/config.yaml 后, 使用 ctrl + c 退出clash"
     echo " 3. 基于订阅地址下载配置: curl -L <订阅地址> -o ~/.config/clash/config.yaml"
@@ -177,42 +177,42 @@ function installTmux() {
 function installSpecifiedSoftware() {
     case "$1" in
         "0")
-            colorprint "info" "installing necessary software"
+            colorPrint "info" "installing necessary software"
             sudorun "sudo -S apt update"
             sudorun "sudo -S apt -y install git curl wget vim"
             ;;
         "1")
             # vim
-            colorprint "info" "installing Vim"
+            colorPrint "info" "installing Vim"
             installVim
 
             # zsh
-            colorprint "info" "installing Zsh"
+            colorPrint "info" "installing Zsh"
             installZsh
             ;;
         "2")
             # docker
-            colorprint "info" "installing Dokcer"
+            colorPrint "info" "installing Dokcer"
             installDocker
             ;;
         "3")
-            colorprint "info" "installing vagrant and virtualbox"
+            colorPrint "info" "installing vagrant and virtualbox"
             ;;
 
         "c")
-            colorprint "info" "installing clash"
+            colorPrint "info" "installing clash"
             installClash
             ;;
         "f")
-            colorprint "info" "installing fonts"
+            colorPrint "info" "installing fonts"
             installFonts
             ;;
         "t")
-            colorprint "info" "installing tmux"
+            colorPrint "info" "installing tmux"
             installTmux
             ;;
         *)
-            colorprint "error" "not support key \"${key}\""
+            colorPrint "error" "not support key \"${key}\""
             ;;
     esac
 }
@@ -259,7 +259,7 @@ function installFonts() {
 }
 
 function main() {
-    colorprint "info" "ubuntu main params: $@"
+    colorPrint "info" "ubuntu main params: $@"
 
     ## define variable
     proxyIpAddr="127.0.0.1"
@@ -279,7 +279,7 @@ function main() {
                 proxyIpAddr="${OPTARG}"
                 ;;
             "a")
-                colorprint "warning" "install all software"
+                colorPrint "warning" "install all software"
                 for((i=0;i<${softwareCount};i++))
                 do
                     key=${softwareInstallKeys[${i}]}
@@ -308,7 +308,7 @@ function main() {
                     "f: fonts" \
                     "t: tmux"
                 optPrint "-h" "display this help"
-                colorprint "warning" "Using opt -h and canceling all operation..."
+                colorPrint "warning" "Using opt -h and canceling all operation..."
                 exit 0
                 ;;
         esac
