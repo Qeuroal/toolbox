@@ -270,18 +270,18 @@ function backupFile() {
 
 # {{{> json file relation
 function getJsonValue() {
-  local json=$1
-  local key=$2
+    local json=$1
+    local key=$2
 
-  if [[ -z "$3" ]]; then
+    if [[ -z "$3" ]]; then
     local num=1
-  else
+    else
     local num=$3
-  fi
+    fi
 
-  local value=$(echo "${json}" | awk -F"[,:}]" '{for(i=1;i<=NF;i++){if($i~/'${key}'\042/){print $(i+1)}}}' | tr -d '"' | sed -n ${num}p)
+    local value=$(echo "${json}" | awk -F"[,:}]" '{for(i=1;i<=NF;i++){if($i~/'${key}'\042/){print $(i+1)}}}' | tr -d '"' | sed -n ${num}p)
 
-  echo ${value}
+    echo ${value}
 }
 
 function getJsonFileValue() {
