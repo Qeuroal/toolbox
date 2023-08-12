@@ -1,6 +1,6 @@
 #!/bin/bash
 
-
+# {{{> case conversion
 function toUpper() {
     echo "$@" | tr '[:lower:]' '[:upper:]'
 }
@@ -8,7 +8,9 @@ function toUpper() {
 function toLower() {
     echo "$@" | tr '[:upper:]' '[:lower:]'
 }
+# <}}}
 
+# {{{> color print functions
 function colorPrint() {
     mode="$1"
     # 左移一位
@@ -154,9 +156,10 @@ function optPrint() {
         printf "    %24s%s\n" " " "$1"
         shift
     done
-    
 }
+# <}}}
 
+# {{{> get functions
 # 获取用户信息
 function getUserInfo() {
     userName=$(whoami)
@@ -174,37 +177,6 @@ function getPasswd() {
     getUserInfo
     read -s -p "[sudo] password for ${userName}:" passwd
     echo ""
-}
-
-# 以 sudo 运行命令
-function sudorun() {
-    cmd="$1"
-    colorPrint "warn" "passwd: $passwd, run $cmd"
-    if test "${cmd}" != ""; then
-        echo "${passwd}" | bash -c "${cmd}"
-    fi
-}
-
-# 判断文件是否存在
-function isExistFile()
-{
-    filename=$1
-    if [ -f $filename ]; then
-        echo 1
-    else
-        echo 0
-    fi
-}
-
-# 判断目录是否存在
-function isExistDir()
-{
-    dir=$1
-    if [ -d $dir ]; then
-        echo 1
-    else
-        echo 0
-    fi
 }
 
 # 获取linux发行版名称 
@@ -246,6 +218,41 @@ function getLinuxDistro() {
         echo "Unknown"
     fi
 }
+# <}}}
+
+# {{{> cmd relation
+# 以 sudo 运行命令
+function sudorun() {
+    cmd="$1"
+    colorPrint "warn" "passwd: $passwd, run $cmd"
+    if test "${cmd}" != ""; then
+        echo "${passwd}" | bash -c "${cmd}"
+    fi
+}
+# <}}}
+
+# {{{> file and folder operation functions
+# 判断文件是否存在
+function isExistFile()
+{
+    filename=$1
+    if [ -f $filename ]; then
+        echo 1
+    else
+        echo 0
+    fi
+}
+
+# 判断目录是否存在
+function isExistDir()
+{
+    dir=$1
+    if [ -d $dir ]; then
+        echo 1
+    else
+        echo 0
+    fi
+}
 
 function backupFile() {
     while test $# -ne 0
@@ -259,8 +266,9 @@ function backupFile() {
         shift 1
     done
 }
+# <}}}
 
-
+# {{{> json file relation
 function getJsonValue() {
   local json=$1
   local key=$2
@@ -286,6 +294,6 @@ function getJsonFileValue() {
     echo "$data"
     getJsonValue "${data}" $@
 }
-
+# <}}}
 
 
