@@ -3,13 +3,13 @@
 source ${PWD}/scripts/utils.sh
 
 # 软件个数
-softwareCount=36
-softwareInstallKeys=("0" "1" "2" "3" "4" "5" "6" "7" "8" "9" \
+software_count=36
+software_install_keys=("0" "1" "2" "3" "4" "5" "6" "7" "8" "9" \
     "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s" "t" "u" "v" "w" "x" "y" "z")
-# echo "softwareInstallKeys${#softwareInstallKeys[@]}: ${softwareInstallKeys[@]}"
+# echo "software_install_keys${#software_install_keys[@]}: ${software_install_keys[@]}"
 # 当前目录
-rootDir=${PWD}
-color_print "info" "project root dir: $rootDir"
+root_folder=${PWD}
+color_print "info" "project root dir: $root_folder"
 
 function set_proxy() {
     # judge exist proxy file
@@ -24,16 +24,16 @@ function set_proxy() {
     filename="proxy_$(date +%s).sh"
     echo "rm -rf ${filename}"
     
-    echo "export HTTP_PROXY=\"http://${proxyIpAddr}:7890/\"" >> ./${filename}
-    echo "export HTTPS_PROXY=\"http://${proxyIpAddr}:7890/\"" >> ./${filename}
-    echo "export FTP_PROXY=\"http://${proxyIpAddr}:7890/\"" >> ./${filename}
-    echo "export ALL_PROXY=\"socks://${proxyIpAddr}:7890/\"" >> ./${filename}
+    echo "export HTTP_PROXY=\"http://${proxy_ip_addr}:7890/\"" >> ./${filename}
+    echo "export HTTPS_PROXY=\"http://${proxy_ip_addr}:7890/\"" >> ./${filename}
+    echo "export FTP_PROXY=\"http://${proxy_ip_addr}:7890/\"" >> ./${filename}
+    echo "export ALL_PROXY=\"socks://${proxy_ip_addr}:7890/\"" >> ./${filename}
     echo "export NO_PROXY=\"localhost,127.0.0.0/8,::1\"" >> ./${filename}
 
-    echo "export http_proxy=\"http://${proxyIpAddr}:7890/\"" >> ./${filename}
-    echo "export https_proxy=\"http://${proxyIpAddr}:7890/\"" >> ./${filename}
-    echo "export ftp_proxy=\"http://${proxyIpAddr}:7890/\"" >> ./${filename}
-    echo "export all_proxy=\"socks://${proxyIpAddr}:7890/\"" >> ./${filename}
+    echo "export http_proxy=\"http://${proxy_ip_addr}:7890/\"" >> ./${filename}
+    echo "export https_proxy=\"http://${proxy_ip_addr}:7890/\"" >> ./${filename}
+    echo "export ftp_proxy=\"http://${proxy_ip_addr}:7890/\"" >> ./${filename}
+    echo "export all_proxy=\"socks://${proxy_ip_addr}:7890/\"" >> ./${filename}
     echo "export no_proxy=\"localhost,127.0.0.0/8,::1\"" >> ./${filename}
 
     chmod +x ${filename}
@@ -46,7 +46,7 @@ function install_vim() {
     git clone https://github.com/Qeuroal/vimart.git ~/vimart
     cd ~/vimart
     yes y | bash install.sh
-    cd ${rootDir}
+    cd ${root_folder}
 
     # 设置国内代理
     # go env -w GOPROXY=https://goproxy.cn
@@ -118,11 +118,11 @@ function prepare() {
 
     # get user info
     get_user_info
-    color_print "info" "userName: ${userName}"
+    color_print "info" "user_name: ${user_name}"
 
     # get ip
     get_ip
-    color_print "info" "ip: ${ipAddr}"
+    color_print "info" "ip: ${ip_addr}"
 
     # set proxy
     set_proxy
@@ -141,8 +141,8 @@ function install_vagrant_and_virtualbox() {
 }
 
 function install_clash() {
-    chmod +x ${rootDir}/resource/clash
-    sudo_run "sudo -S mv ${rootDir}/resource/clash /usr/local/bin/"
+    chmod +x ${root_folder}/resource/clash
+    sudo_run "sudo -S mv ${root_folder}/resource/clash /usr/local/bin/"
 
     color_print "warning" "Please do following steps:"
     echo " 1. 执行 clash 进行初始化"
@@ -162,8 +162,8 @@ function install_tmux() {
     backup_file "${HOME}/.tmux.conf.local"
     rm -rf ~/.tmux.conf
     rm -rf ~/.tmux.conf.local
-    cp -f ${rootDir}/resource/tmux.conf ~/.tmux.conf
-    cp -f ${rootDir}/resource/tmux.conf.local ~/.tmux.conf.local
+    cp -f ${root_folder}/resource/tmux.conf ~/.tmux.conf
+    cp -f ${root_folder}/resource/tmux.conf.local ~/.tmux.conf.local
     yes y | tmux kill-server
 
     ## method 2
@@ -219,10 +219,10 @@ function install_specified_software() {
 
 # install software
 function install_software() {
-    for((i=0;i<${softwareCount};i++))
+    for((i=0;i<${software_count};i++))
     do
-        key=${softwareInstallKeys[${i}]}
-        if test ${softwareInstallOpts[${key}]} -eq 1; then
+        key=${software_install_keys[${i}]}
+        if test ${software_install_opts[${key}]} -eq 1; then
             install_specified_software ${key}
         fi
     done
@@ -233,7 +233,7 @@ function install_fonts() {
     mkdir -p ~/.local/share/fonts
     rm -rf ~/.local/share/fonts/Droid\ Sans\ Mono\ Nerd\ Font\ Complete.otf
 
-    cd ${rootDir}/resource
+    cd ${root_folder}/resource
     cp ./fonts/Droid\ Sans\ Mono\ Nerd\ Font\ Complete.otf ~/.local/share/fonts
 
     # rm MesloLGS
@@ -255,35 +255,35 @@ function install_fonts() {
     fc-cache -vf ~/.local/share/fonts
     # sudo fc-cache -f -v
 
-    cd ${rootDir}
+    cd ${root_folder}
 }
 
 function main() {
     color_print "info" "ubuntu main params: $@"
 
     ## define variable
-    proxyIpAddr="127.0.0.1"
+    proxy_ip_addr="127.0.0.1"
     passwd=""
     # 软件安装标识数组
-    declare -A softwareInstallOpts
-    for((i=0;i<${softwareCount};i++))
+    declare -A software_install_opts
+    for((i=0;i<${software_count};i++))
     do
-        key=${softwareInstallKeys[${i}]}
-        softwareInstallOpts[$key]=10
+        key=${software_install_keys[${i}]}
+        software_install_opts[$key]=10
     done
 
     while getopts ":i:hao:" opt; do
         case "${opt}" in
             "i")
                 sudo_run "sudo -S rm -rf /etc/profile.d/proxy.h"
-                proxyIpAddr="${OPTARG}"
+                proxy_ip_addr="${OPTARG}"
                 ;;
             "a")
                 color_print "warning" "install all software"
-                for((i=0;i<${softwareCount};i++))
+                for((i=0;i<${software_count};i++))
                 do
-                    key=${softwareInstallKeys[${i}]}
-                    softwareInstallOpts[${key}]=1
+                    key=${software_install_keys[${i}]}
+                    software_install_opts[${key}]=1
                 done
                 ;;
             "o")
@@ -292,7 +292,7 @@ function main() {
                 for((i=0;i<${#softwareStr};i++))
                 do
                     installOpt="${softwareStr:$i:1}"
-                    softwareInstallOpts[${installOpt}]=1
+                    software_install_opts[${installOpt}]=1
                 done
                 ;;
             "h"|*)

@@ -80,7 +80,7 @@ function block_color_print() {
     shift 1
 
     color="$(tput sgr0)"
-    normalColor="$(tput sgr0)"
+    normal_color="$(tput sgr0)"
 
     case "${mode}" in
         "finish")
@@ -128,9 +128,9 @@ function block_color_print() {
     done
 
     if test "${mode}" == "opt"; then
-        printf "${normalColor}"
+        printf "${normal_color}"
     else
-        echo "<=== }}}${normalColor}"
+        echo "<=== }}}${normal_color}"
         echo ''
     fi
 }
@@ -162,20 +162,20 @@ function opt_print() {
 # {{{> get functions
 # 获取用户信息
 function get_user_info() {
-    userName=$(whoami)
+    user_name=$(whoami)
 }
 
 # 获取本机 IP 地址
 function get_ip() {
-    ipAddr=$(ifconfig | grep "inet " | grep -Fv 127.0.0.1 | awk '{print $2}')
-    if test "$ipAddr" = "" ; then
-        ipAddr="127.0.0.1"
+    ip_addr=$(ifconfig | grep "inet " | grep -Fv 127.0.0.1 | awk '{print $2}')
+    if test "$ip_addr" = "" ; then
+        ip_addr="127.0.0.1"
     fi
 }
 
 function get_passwd() {
     get_user_info
-    read -s -p "[sudo] password for ${userName}:" passwd
+    read -s -p "[sudo] password for ${user_name}:" passwd
     echo ""
 }
 
@@ -235,7 +235,7 @@ function sudo_run() {
 # 判断文件是否存在
 function is_exist_file()
 {
-    filename=$1
+    local filename=$1
     if [ -f $filename ]; then
         echo 1
     else
@@ -246,8 +246,8 @@ function is_exist_file()
 # 判断目录是否存在
 function is_exist_folder()
 {
-    dir=$1
-    if [ -d $dir ]; then
+    local folder_name=$1
+    if [ -d ${folder_name} ]; then
         echo 1
     else
         echo 0
@@ -257,10 +257,10 @@ function is_exist_folder()
 function backup_file() {
     while test $# -ne 0
     do
-        fileName=$1
-        if [ $(is_exist_file "${fileName}") -eq 1 ]; then
-            color_print "info" "backup file: ${fileName}"
-            cp -f ${fileName} ${fileName}.backup
+        local filename=$1
+        if [ $(is_exist_file "${filename}") -eq 1 ]; then
+            color_print "info" "backup file: ${filename}"
+            cp -f ${filename} ${filename}.backup
         fi
 
         shift 1
@@ -285,12 +285,12 @@ function get_json_value() {
 }
 
 function get_json_file_value() {
-    local fileName=$1
+    local filename=$1
     shift 1
 
     echo $@
 
-    local data=$(cat ${fileName})
+    local data=$(cat ${filename})
     echo "$data"
     get_json_value "${data}" $@
 }
