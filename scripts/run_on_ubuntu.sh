@@ -9,15 +9,15 @@ softwareInstallKeys=("0" "1" "2" "3" "4" "5" "6" "7" "8" "9" \
 # echo "softwareInstallKeys${#softwareInstallKeys[@]}: ${softwareInstallKeys[@]}"
 # 当前目录
 rootDir=${PWD}
-colorPrint "info" "project root dir: $rootDir"
+color_print "info" "project root dir: $rootDir"
 
-function setProxy() {
+function set_proxy() {
     # judge exist proxy file
-    if [ $(isExistFile "/etc/profile.d/proxy.sh") == 1 ]; then
-        colorPrint "warning" "canceling to add proxy.sh"
+    if [ $(is_exist_file "/etc/profile.d/proxy.sh") == 1 ]; then
+        color_print "warning" "canceling to add proxy.sh"
         return
     else
-        colorPrint "info" "adding proxy.sh"
+        color_print "info" "adding proxy.sh"
     fi
 
     # generate proxy file
@@ -38,11 +38,11 @@ function setProxy() {
 
     chmod +x ${filename}
     echo "${passwd}" | sudo -S mv ${filename} /etc/profile.d/proxy.sh
-    # sudorun "chmod +x /etc/profile.d/proxy.sh"
+    # sudo_run "chmod +x /etc/profile.d/proxy.sh"
     source /etc/profile.d/proxy.sh
 }
 
-function installVim() {
+function install_vim() {
     git clone https://github.com/Qeuroal/vimart.git ~/vimart
     cd ~/vimart
     yes y | bash install.sh
@@ -56,14 +56,14 @@ function installVim() {
 }
 
 
-function installZsh() {
-    sudorun "sudo -S apt update"
-    sudorun "sudo -S apt -y install zsh autojump"
-    sudorun "chsh -s /bin/zsh"
+function install_zsh() {
+    sudo_run "sudo -S apt update"
+    sudo_run "sudo -S apt -y install zsh autojump"
+    sudo_run "chsh -s /bin/zsh"
 
     # yes y | sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 	source /etc/profile.d/proxy.sh
-    # sudorun "yes y | sh -c \"$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)\""
+    # sudo_run "yes y | sh -c \"$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)\""
 	curl -JL -o install_oh_my_zsh.sh  https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
 	yes y | bash install_oh_my_zsh.sh \
         && git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $HOME/.oh-my-zsh/custom/themes/powerlevel10k \
@@ -72,13 +72,13 @@ function installZsh() {
         && rm -rf install_oh_my_zsh.sh
 }
 
-function installDocker() {
-    sudorun "sudo -S apt update"
-    sudorun "yes y | sudo -S apt remove docker docker-engine docker.io"
+function install_docker() {
+    sudo_run "sudo -S apt update"
+    sudo_run "yes y | sudo -S apt remove docker docker-engine docker.io"
 
     # ##  使用 APT 安装
     # # 添加使用 HTTPS 传输的软件包以及 CA 证书
-    # sudorun "yes y | sudo -S apt install apt-transport-https ca-certificates curl gnupg lsb-release"
+    # sudo_run "yes y | sudo -S apt install apt-transport-https ca-certificates curl gnupg lsb-release"
 
     # # 设置国内源
     # # curl -fsSL https://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
@@ -89,24 +89,24 @@ function installDocker() {
     # # 向 sources.list 中添加 Docker 软件源
     # filename="docker_tmp_$(date +%s)"
     # echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | tee ./${filename}.list > /dev/null
-    # sudorun "sudo -S mv ./${filename}.list /etc/apt/sources.list.d/docker.list"
+    # sudo_run "sudo -S mv ./${filename}.list /etc/apt/sources.list.d/docker.list"
 
     # # 安装 docker
-    # sudorun "sudo -S apt update"
-    # sudorun "yes y | sudo -S apt install docker-ce docker-ce-cli containerd.io"
+    # sudo_run "sudo -S apt update"
+    # sudo_run "yes y | sudo -S apt install docker-ce docker-ce-cli containerd.io"
 
     ## 脚本自动安装 docker
     curl -fsSL get.docker.com -o get-docker.sh
     # sudo sh get-docker.sh --mirror Aliyun
-    sudorun "sudo -S bash get-docker.sh"
+    sudo_run "sudo -S bash get-docker.sh"
 
     # 启动 Docker
-    sudorun "sudo -S systemctl enable docker"
-    sudorun "sudo -S systemctl start docker"
+    sudo_run "sudo -S systemctl enable docker"
+    sudo_run "sudo -S systemctl start docker"
 
     # 建立 docker 用户组
-    sudorun "sudo -S groupadd docker"
-    sudorun "sudo -S usermod -aG docker $USER"
+    sudo_run "sudo -S groupadd docker"
+    sudo_run "sudo -S usermod -aG docker $USER"
 
     # 测试 Docker 是否安装正确
     # docker run --rm hello-world
@@ -114,52 +114,52 @@ function installDocker() {
 
 function prepare() {
     # get passwd
-    getPasswd
+    get_passwd
 
     # get user info
-    getUserInfo
-    colorPrint "info" "userName: ${userName}"
+    get_user_info
+    color_print "info" "userName: ${userName}"
 
     # get ip
-    getIp
-    colorPrint "info" "ip: ${ipAddr}"
+    get_ip
+    color_print "info" "ip: ${ipAddr}"
 
     # set proxy
-    setProxy
+    set_proxy
 }
 
-function installVagrantAndVirtualbox() {
+function install_vagrant_and_virtualbox() {
     # 安装 virtualbox
-    sudorun "sudo -S apt -y install virtualbox"
+    sudo_run "sudo -S apt -y install virtualbox"
 
     # 安装 vagrant
     wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
     echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
-    sudorun "sudo -S apt update"
-    sudorun "sudo -S apt -y install vagrant"
+    sudo_run "sudo -S apt update"
+    sudo_run "sudo -S apt -y install vagrant"
 
 }
 
-function installClash() {
+function install_clash() {
     chmod +x ${rootDir}/resource/clash
-    sudorun "sudo -S mv ${rootDir}/resource/clash /usr/local/bin/"
+    sudo_run "sudo -S mv ${rootDir}/resource/clash /usr/local/bin/"
 
-    colorPrint "warning" "Please do following steps:"
+    color_print "warning" "Please do following steps:"
     echo " 1. 执行 clash 进行初始化"
     echo " 2. 生成配置文件 ~/.config/clash/config.yaml 后, 使用 ctrl + c 退出clash"
     echo " 3. 基于订阅地址下载配置: curl -L <订阅地址> -o ~/.config/clash/config.yaml"
     echo " 4. 打开网址: yacd.haishan.me 修改节点等信息"
 }
 
-function installTmux() {
+function install_tmux() {
     # install software
-    sudorun "sudo -S apt update"
-    sudorun "sudo -S apt -y install tmux"
+    sudo_run "sudo -S apt update"
+    sudo_run "sudo -S apt -y install tmux"
 
     ## mehthod 1
     # set conf
-    backupFile "${HOME}/.tmux.conf"
-    backupFile "${HOME}/.tmux.conf.local"
+    backup_file "${HOME}/.tmux.conf"
+    backup_file "${HOME}/.tmux.conf.local"
     rm -rf ~/.tmux.conf
     rm -rf ~/.tmux.conf.local
     cp -f ${rootDir}/resource/tmux.conf ~/.tmux.conf
@@ -174,61 +174,61 @@ function installTmux() {
     # ln -sf "${HOME}/.tmux/.tmux.conf.local" ~/.tmux.conf.local
 }
 
-function installSpecifiedSoftware() {
+function install_specified_software() {
     case "$1" in
         "0")
-            colorPrint "info" "installing necessary software"
-            sudorun "sudo -S apt update"
-            sudorun "sudo -S apt -y install git curl wget vim"
+            color_print "info" "installing necessary software"
+            sudo_run "sudo -S apt update"
+            sudo_run "sudo -S apt -y install git curl wget vim"
             ;;
         "1")
             # vim
-            colorPrint "info" "installing Vim"
-            installVim
+            color_print "info" "installing Vim"
+            install_vim
 
             # zsh
-            colorPrint "info" "installing Zsh"
-            installZsh
+            color_print "info" "installing Zsh"
+            install_zsh
             ;;
         "2")
             # docker
-            colorPrint "info" "installing Dokcer"
-            installDocker
+            color_print "info" "installing Dokcer"
+            install_docker
             ;;
         "3")
-            colorPrint "info" "installing vagrant and virtualbox"
+            color_print "info" "installing vagrant and virtualbox"
             ;;
 
         "c")
-            colorPrint "info" "installing clash"
-            installClash
+            color_print "info" "installing clash"
+            install_clash
             ;;
         "f")
-            colorPrint "info" "installing fonts"
-            installFonts
+            color_print "info" "installing fonts"
+            install_fonts
             ;;
         "t")
-            colorPrint "info" "installing tmux"
-            installTmux
+            color_print "info" "installing tmux"
+            install_tmux
             ;;
         *)
-            colorPrint "error" "not support key \"${key}\""
+            color_print "error" "not support key \"${key}\""
             ;;
     esac
 }
 
 # install software
-function installSoftware() {
+function install_software() {
     for((i=0;i<${softwareCount};i++))
     do
         key=${softwareInstallKeys[${i}]}
         if test ${softwareInstallOpts[${key}]} -eq 1; then
-            installSpecifiedSoftware ${key}
+            install_specified_software ${key}
         fi
     done
 }
 
-function installFonts() {
+function install_fonts() {
 
     mkdir -p ~/.local/share/fonts
     rm -rf ~/.local/share/fonts/Droid\ Sans\ Mono\ Nerd\ Font\ Complete.otf
@@ -250,8 +250,8 @@ function installFonts() {
 
     # git clone https://github.com/abertsch/Menlo-for-Powerline.git ~/.local/share/fonts
     
-    sudorun "sudo -S apt update"
-    sudorun "sudo -S apt -y install fontconfig"
+    sudo_run "sudo -S apt update"
+    sudo_run "sudo -S apt -y install fontconfig"
     fc-cache -vf ~/.local/share/fonts
     # sudo fc-cache -f -v
 
@@ -259,7 +259,7 @@ function installFonts() {
 }
 
 function main() {
-    colorPrint "info" "ubuntu main params: $@"
+    color_print "info" "ubuntu main params: $@"
 
     ## define variable
     proxyIpAddr="127.0.0.1"
@@ -275,11 +275,11 @@ function main() {
     while getopts ":i:hao:" opt; do
         case "${opt}" in
             "i")
-                sudorun "sudo -S rm -rf /etc/profile.d/proxy.h"
+                sudo_run "sudo -S rm -rf /etc/profile.d/proxy.h"
                 proxyIpAddr="${OPTARG}"
                 ;;
             "a")
-                colorPrint "warning" "install all software"
+                color_print "warning" "install all software"
                 for((i=0;i<${softwareCount};i++))
                 do
                     key=${softwareInstallKeys[${i}]}
@@ -297,9 +297,9 @@ function main() {
                 ;;
             "h"|*)
                 echo "Options:"
-                optPrint "-i" "set proxy IP address, default: 127.0.0.1"
-                optPrint "-a" "install all necessary software"
-                optPrint "-o" "choose to install software" \
+                opt_print "-i" "set proxy IP address, default: 127.0.0.1"
+                opt_print "-a" "install all necessary software"
+                opt_print "-o" "choose to install software" \
                     "0: necessary" \
                     "1: vim and zsh" \
                     "2: docker" \
@@ -307,15 +307,15 @@ function main() {
                     "c: clash" \
                     "f: fonts" \
                     "t: tmux"
-                optPrint "-h" "display this help"
-                colorPrint "warning" "Using opt -h and canceling all operation..."
+                opt_print "-h" "display this help"
+                color_print "warning" "Using opt -h and canceling all operation..."
                 exit 0
                 ;;
         esac
     done
 
     prepare
-    installSoftware
+    install_software
 }
 
 main $@

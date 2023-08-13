@@ -1,17 +1,17 @@
 #!/bin/bash
 
 # {{{> case conversion
-function toUpper() {
+function to_upper() {
     echo "$@" | tr '[:lower:]' '[:upper:]'
 }
 
-function toLower() {
+function to_lower() {
     echo "$@" | tr '[:upper:]' '[:lower:]'
 }
 # <}}}
 
 # {{{> color print functions
-function colorPrint() {
+function color_print() {
     mode="$1"
     # 左移一位
     shift 1
@@ -73,9 +73,9 @@ function colorPrint() {
     fi
 }
 
-function blockColorPrint() {
+function block_color_print() {
     mode="$1"
-    mode=$(toLower "${mode}")
+    mode=$(to_lower "${mode}")
     # 左移一位
     shift 1
 
@@ -118,7 +118,7 @@ function blockColorPrint() {
         shift 1
     else
         # echo "===> $(echo "${mode}" | tr '[:lower:]' '[:upper:]') {{{"
-        echo "===> $(toUpper "${mode}") {{{"
+        echo "===> $(to_upper "${mode}") {{{"
     fi
 
     while test $# -ne 0
@@ -135,7 +135,7 @@ function blockColorPrint() {
     fi
 }
 
-function optPrint() {
+function opt_print() {
     opt="$1"
     val="$2"
     
@@ -161,27 +161,27 @@ function optPrint() {
 
 # {{{> get functions
 # 获取用户信息
-function getUserInfo() {
+function get_user_info() {
     userName=$(whoami)
 }
 
 # 获取本机 IP 地址
-function getIp() {
+function get_ip() {
     ipAddr=$(ifconfig | grep "inet " | grep -Fv 127.0.0.1 | awk '{print $2}')
     if test "$ipAddr" = "" ; then
         ipAddr="127.0.0.1"
     fi
 }
 
-function getPasswd() {
-    getUserInfo
+function get_passwd() {
+    get_user_info
     read -s -p "[sudo] password for ${userName}:" passwd
     echo ""
 }
 
 # 获取linux发行版名称 
-# use: distro=`getLinuxDistro`
-function getLinuxDistro() {
+# use: distro=`get_linux_distro`
+function get_linux_distro() {
     if grep -Eq "Ubuntu" /etc/*-release; then
         echo "Ubuntu"
     elif grep -Eq "Deepin" /etc/*-release; then
@@ -222,9 +222,9 @@ function getLinuxDistro() {
 
 # {{{> cmd relation
 # 以 sudo 运行命令
-function sudorun() {
+function sudo_run() {
     cmd="$1"
-    colorPrint "warn" "passwd: $passwd, run $cmd"
+    color_print "warn" "passwd: $passwd, run $cmd"
     if test "${cmd}" != ""; then
         echo "${passwd}" | bash -c "${cmd}"
     fi
@@ -233,7 +233,7 @@ function sudorun() {
 
 # {{{> file and folder operation functions
 # 判断文件是否存在
-function isExistFile()
+function is_exist_file()
 {
     filename=$1
     if [ -f $filename ]; then
@@ -244,7 +244,7 @@ function isExistFile()
 }
 
 # 判断目录是否存在
-function isExistDir()
+function is_exist_folder()
 {
     dir=$1
     if [ -d $dir ]; then
@@ -254,12 +254,12 @@ function isExistDir()
     fi
 }
 
-function backupFile() {
+function backup_file() {
     while test $# -ne 0
     do
         fileName=$1
-        if [ $(isExistFile "${fileName}") -eq 1 ]; then
-            colorPrint "info" "backup file: ${fileName}"
+        if [ $(is_exist_file "${fileName}") -eq 1 ]; then
+            color_print "info" "backup file: ${fileName}"
             cp -f ${fileName} ${fileName}.backup
         fi
 
@@ -269,7 +269,7 @@ function backupFile() {
 # <}}}
 
 # {{{> json file relation
-function getJsonValue() {
+function get_json_value() {
     local json=$1
     local key=$2
 
@@ -284,7 +284,7 @@ function getJsonValue() {
     echo ${value}
 }
 
-function getJsonFileValue() {
+function get_json_file_value() {
     local fileName=$1
     shift 1
 
@@ -292,7 +292,7 @@ function getJsonFileValue() {
 
     local data=$(cat ${fileName})
     echo "$data"
-    getJsonValue "${data}" $@
+    get_json_value "${data}" $@
 }
 # <}}}
 
