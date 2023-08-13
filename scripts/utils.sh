@@ -288,11 +288,11 @@ function get_json_file_value() {
     local filename=$1
     shift 1
 
-    echo $@
+    echo "$@"
 
     local data=$(cat ${filename})
     echo "$data"
-    get_json_value "${data}" $@
+    get_json_value "${data}" "$@"
 }
 # <}}}
 

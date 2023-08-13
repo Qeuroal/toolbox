@@ -3,14 +3,14 @@
 source ${PWD}/scripts/utils.sh
 
 function run_on_linux() {
-    # echo "run_on_linux: "$@
+    # echo "run_on_linux: $@"
 
     distro=`get_linux_distro`
     color_print "info" "Linux distro: ${distro}"
     case "${distro}" in 
         "Ubuntu")
             # color_print "error" "not support ${distro}"
-            bash ${PWD}/scripts/run_on_ubuntu.sh $@
+            bash ${PWD}/scripts/run_on_ubuntu.sh "$@"
             ;;
         "Deepin")
             color_print "error" "not support ${distro}"
@@ -64,7 +64,7 @@ function run_on_linux() {
 }
 
 function main() {
-    # echo "main: "$@
+    # echo "main: $@"
 
     # 平台类型
     type=$(uname)
@@ -83,14 +83,14 @@ function main() {
             color_print "error" "Android isn't suppoted now!!!"
             # installVimartOnAndroid
         else
-            run_on_linux $@
+            run_on_linux "$@"
         fi
     else
         echo "Not support platform type: "${type}
     fi
 }
 
-main $@
+main "$@"
 
 
 

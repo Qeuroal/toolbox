@@ -318,7 +318,7 @@ function main() {
     install_software
 }
 
-main $@
+main "$@"
 
 
 
