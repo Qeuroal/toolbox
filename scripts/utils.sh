@@ -17,55 +17,55 @@ function color_print() {
     shift 1
 
     # colors
-    bgBlack="\033[40m"
-    bgRed="\033[41m"
-    bgGreen="\033[42m"
-    bgYellow="\033[43m"
-    bgBlue="\033[44m"
-    bgPurple="\033[45m"
-    bgCyan="\033[46m"
-    bgWhite="\033[47m"
+    bg_black="\033[40m"
+    bg_red="\033[41m"
+    bg_green="\033[42m"
+    bg_yellow="\033[43m"
+    bg_blue="\033[44m"
+    bg_purple="\033[45m"
+    bg_cyan="\033[46m"
+    bg_white="\033[47m"
 
-    fgBlack="\033[30m"
-    fgRed="\033[31m"
-    fgGreen="\033[32m"
-    fgYellow="\033[33m"
-    fgBlue="\033[34m"
-    fgPurple="\033[35m"
-    fgCyan="\033[36m"
-    fgWhite="\033[37m"
+    fg_black="\033[30m"
+    fg_red="\033[31m"
+    fg_green="\033[32m"
+    fg_yellow="\033[33m"
+    fg_blue="\033[34m"
+    fg_purple="\033[35m"
+    fg_cyan="\033[36m"
+    fg_white="\033[37m"
 
     color=""
-    setClear="\033[0m"
-    setBold="\033[1m"
-    setUnderline="\033[4m"
-    setFlash="\033[5m"
+    set_clear="\033[0m"
+    set_bold="\033[1m"
+    set_underline="\033[4m"
+    set_flash="\033[5m"
 
     case "${mode}" in
         "finish")
-            color="${bgBlack}${fgGreen}"
+            color="${bg_black}${fg_green}"
             ;;
         "begin")
-            color="${fgBlack}${fgGreen}"
+            color="${fg_black}${fg_green}"
             ;;
         "opt")
-            color="${fgBlack}${fgYellow}"
+            color="${fg_black}${fg_yellow}"
             ;;
         "error")
-            color="${bgBlack}${fgRed}${setBold}"
+            color="${bg_black}${fg_red}${set_bold}"
             ;;
         "warning")
-            color="${bgYellow}${fgBlack}"
+            color="${bg_yellow}${fg_black}"
             ;;
         "info")
-            color="${bgBlack}${fgPurple}"
+            color="${bg_black}${fg_purple}"
             ;;
         *)
-            setClear=""
+            set_clear=""
             ;;
     esac
 
-    info="${color}===> $@${setClear}"
+    info="${color}===> $@${set_clear}"
     if test "${mode}" == "opt"; then
         echo -e -n "${info}"
     else
@@ -84,27 +84,27 @@ function block_color_print() {
 
     case "${mode}" in
         "finish")
-            # color="${bgBlack}${fgGreen}"
+            # color="${bg_black}${fg_green}"
             color="$(tput setaf 2)"
             ;;
         "begin")
-            # color="${fgBlack}${fgGreen}"
+            # color="${fg_black}${fg_green}"
             color="$(tput setaf 2)"
             ;;
         "opt")
-            # color="${fgBlack}${fgYellow}"
+            # color="${fg_black}${fg_yellow}"
             color="$(tput setaf 3)"
             ;;
         "error")
-            # color="${bgBlack}${fgRed}${setBold}"
+            # color="${bg_black}${fg_red}${set_bold}"
             color="$(tput setaf 1 bold)"
             ;;
         "warning")
-            # color="${bgYellow}${fgBlack}"
+            # color="${bg_yellow}${fg_black}"
             color="$(tput setab 3 setaf 0)"
             ;;
         "info")
-            # color="${bgBlack}${fgPurple}"
+            # color="${bg_black}${fg_purple}"
             color="$(tput setaf 5)"
             ;;
         *)
