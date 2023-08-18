@@ -2,14 +2,16 @@
 
 source ${PWD}/scripts/utils.sh
 
-# 软件个数
-software_count=36
-software_install_keys=("0" "1" "2" "3" "4" "5" "6" "7" "8" "9" \
-    "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s" "t" "u" "v" "w" "x" "y" "z")
-# echo "software_install_keys${#software_install_keys[@]}: ${software_install_keys[@]}"
-# 当前目录
-root_folder=${PWD}
-color_print "info" "project root dir: $root_folder"
+function set_global_variable() {
+    # 软件个数
+    software_count=36
+    software_install_keys=("0" "1" "2" "3" "4" "5" "6" "7" "8" "9" \
+        "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s" "t" "u" "v" "w" "x" "y" "z")
+    # echo "software_install_keys${#software_install_keys[@]}: ${software_install_keys[@]}"
+    # 当前目录
+    root_folder=${PWD}
+    color_print "info" "project root dir: $root_folder"
+}
 
 function set_proxy() {
     # judge exist proxy file
@@ -260,6 +262,10 @@ function install_fonts() {
 
 function main() {
     color_print "info" "ubuntu main params: $@"
+
+    # {{{> set global variable
+    set_global_variable
+    # <}}}
 
     ## define variable
     proxy_ip_addr="127.0.0.1"
