@@ -75,7 +75,6 @@ function get_user_opts() {
 }
 # <}}}
 
-
 function set_proxy() {
     # judge exist proxy file
     if test "$(is_exist_file "/etc/profile.d/proxy.sh")" = 1 -a "${proxy_ip_addr}" = "127.0.0.1"; then
@@ -109,6 +108,24 @@ function set_proxy() {
     source /etc/profile.d/proxy.sh
 }
 
+function get_require_info() {
+    # get passwd
+    get_passwd
+
+    # get user info
+    get_user_info
+    color_print "info" "user_name: ${user_name}"
+
+    # get ip
+    get_ip
+    color_print "info" "ip: ${ip_addr}"
+}
+
+function set_require_info() {
+    # set proxy
+    set_proxy
+}
+
 function install_vim() {
     git clone https://github.com/Qeuroal/vimart.git ~/vimart
     cd ~/vimart
@@ -121,7 +138,6 @@ function install_vim() {
     # 安装 YouCompleteMe-all
     python3 ~/.vim/plugged/YouCompleteMe/install.py --all --verbose
 }
-
 
 function install_zsh() {
     sudo_run "sudo -S apt update"
@@ -177,24 +193,6 @@ function install_docker() {
 
     # 测试 Docker 是否安装正确
     # docker run --rm hello-world
-}
-
-function get_require_info() {
-    # get passwd
-    get_passwd
-
-    # get user info
-    get_user_info
-    color_print "info" "user_name: ${user_name}"
-
-    # get ip
-    get_ip
-    color_print "info" "ip: ${ip_addr}"
-}
-
-function set_require_info() {
-    # set proxy
-    set_proxy
 }
 
 function install_vagrant_and_virtualbox() {
