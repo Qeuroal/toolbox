@@ -15,7 +15,7 @@ function set_global_variable() {
 
 function set_proxy() {
     # judge exist proxy file
-    if [ $(is_exist_file "/etc/profile.d/proxy.sh") == 1 ]; then
+    if [ $(is_exist_file "/etc/profile.d/proxy.sh") == 1 -a "${proxy_ip_addr}" = "127.0.0.1" ]; then
         color_print "warning" "canceling to add proxy.sh"
         return
     else
@@ -114,7 +114,7 @@ function install_docker() {
     # docker run --rm hello-world
 }
 
-function prepare() {
+function get_require_info() {
     # get passwd
     get_passwd
 
@@ -125,7 +125,9 @@ function prepare() {
     # get ip
     get_ip
     color_print "info" "ip: ${ip_addr}"
+}
 
+function set_require_info() {
     # set proxy
     set_proxy
 }
@@ -281,7 +283,7 @@ function main() {
     while getopts ":i:hao:" opt; do
         case "${opt}" in
             "i")
-                sudo_run "sudo -S rm -rf /etc/profile.d/proxy.h"
+                # sudo_run "sudo -S rm -rf /etc/profile.d/proxy.h"
                 proxy_ip_addr="${OPTARG}"
                 ;;
             "a")
@@ -320,7 +322,8 @@ function main() {
         esac
     done
 
-    prepare
+    get_require_info
+    set_require_info
     install_software
 }
 
