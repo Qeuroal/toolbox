@@ -73,15 +73,12 @@ function main() {
 
     if [ ${type} == "Darwin" ]; then
         color_print "error" "Not support now!!!"
-        # installVimartOnMac
     elif [ ${type} == "FreeBSD" ]; then
         color_print "error" "Not support now!!!"
-        # installVimartOnFreebsd
     elif [ ${type} == "Linux" ]; then
         tp=$(uname -a)
         if [[ $tp =~ "Android" ]]; then
             color_print "error" "Android isn't suppoted now!!!"
-            # installVimartOnAndroid
         else
             run_on_linux "$@"
         fi
