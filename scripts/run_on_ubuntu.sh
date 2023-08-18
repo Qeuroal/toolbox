@@ -2,6 +2,7 @@
 
 source ${PWD}/scripts/utils.sh
 
+# {{{> set global variable
 function set_global_variable() {
     # 软件个数
     software_count=36
@@ -25,8 +26,55 @@ function set_global_variable() {
     proxy_ip_addr="127.0.0.1"
     # user passwd
     passwd=""
-
 }
+# <}}}
+
+# {{{> 获取选项
+function get_user_opts() {
+    while getopts ":i:hao:" opt; do
+        case "${opt}" in
+            "i")
+                # sudo_run "sudo -S rm -rf /etc/profile.d/proxy.h"
+                proxy_ip_addr="${OPTARG}"
+                ;;
+            "a")
+                color_print "warning" "install all software"
+                for((i=0;i<${software_count};i++))
+                do
+                    key=${software_install_keys[${i}]}
+                    software_install_opts[${key}]=1
+                done
+                ;;
+            "o")
+                softwareStr="${OPTARG}"
+                # set opt
+                for((i=0;i<${#softwareStr};i++))
+                do
+                    installOpt="${softwareStr:$i:1}"
+                    software_install_opts[${installOpt}]=1
+                done
+                ;;
+            "h"|*)
+                echo "Options:"
+                opt_print "-i" "set proxy IP address, default: 127.0.0.1"
+                opt_print "-a" "install all necessary software"
+                opt_print "-o" "choose to install software" \
+                    "0: necessary" \
+                    "1: vim and zsh" \
+                    "2: docker" \
+                    "3: vagrant and virtualbox" \
+                    "c: clash" \
+                    "f: fonts" \
+                    "t: tmux"
+                opt_print "-h" "display this help"
+                color_print "warning" "Using opt -h and canceling all operation..."
+                exit 0
+                ;;
+        esac
+    done
+}
+# <}}}
+
 
 function set_proxy() {
     # judge exist proxy file
@@ -282,53 +330,9 @@ function install_fonts() {
 function main() {
     color_print "info" "ubuntu main params: $@"
 
-    # {{{> set global variable
     set_global_variable
-    # <}}}
 
-    # {{{> 获取选项
-    while getopts ":i:hao:" opt; do
-        case "${opt}" in
-            "i")
-                # sudo_run "sudo -S rm -rf /etc/profile.d/proxy.h"
-                proxy_ip_addr="${OPTARG}"
-                ;;
-            "a")
-                color_print "warning" "install all software"
-                for((i=0;i<${software_count};i++))
-                do
-                    key=${software_install_keys[${i}]}
-                    software_install_opts[${key}]=1
-                done
-                ;;
-            "o")
-                softwareStr="${OPTARG}"
-                # set opt
-                for((i=0;i<${#softwareStr};i++))
-                do
-                    installOpt="${softwareStr:$i:1}"
-                    software_install_opts[${installOpt}]=1
-                done
-                ;;
-            "h"|*)
-                echo "Options:"
-                opt_print "-i" "set proxy IP address, default: 127.0.0.1"
-                opt_print "-a" "install all necessary software"
-                opt_print "-o" "choose to install software" \
-                    "0: necessary" \
-                    "1: vim and zsh" \
-                    "2: docker" \
-                    "3: vagrant and virtualbox" \
-                    "c: clash" \
-                    "f: fonts" \
-                    "t: tmux"
-                opt_print "-h" "display this help"
-                color_print "warning" "Using opt -h and canceling all operation..."
-                exit 0
-                ;;
-        esac
-    done
-    # <}}}
+    get_user_opts "$@"
 
     get_require_info
     set_require_info
