@@ -275,7 +275,7 @@ function main() {
     for((i=0;i<${software_count};i++))
     do
         key=${software_install_keys[${i}]}
-        software_install_opts[$key]=10
+        software_install_opts[$key]=0
     done
 
     while getopts ":i:hao:" opt; do
