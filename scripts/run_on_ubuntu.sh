@@ -8,21 +8,36 @@ function set_global_variable() {
     software_install_keys=("0" "1" "2" "3" "4" "5" "6" "7" "8" "9" \
         "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s" "t" "u" "v" "w" "x" "y" "z")
     # echo "software_install_keys${#software_install_keys[@]}: ${software_install_keys[@]}"
+
+    # 软件安装标识数组
+    declare -gA software_install_opts
+    for((i=0;i<${software_count};i++))
+    do
+        key=${software_install_keys[${i}]}
+        software_install_opts[$key]=0
+    done
+
     # 当前目录
     root_folder=${PWD}
     color_print "info" "project root dir: $root_folder"
+
+    # proxy ip
+    proxy_ip_addr="127.0.0.1"
+    # user passwd
+    passwd=""
+
 }
 
 function set_proxy() {
     # judge exist proxy file
-    if [ $(is_exist_file "/etc/profile.d/proxy.sh") == 1 -a "${proxy_ip_addr}" = "127.0.0.1" ]; then
+    if test "$(is_exist_file "/etc/profile.d/proxy.sh")" = 1 -a "${proxy_ip_addr}" = "127.0.0.1"; then
         color_print "warning" "canceling to add proxy.sh"
         return
     else
         color_print "info" "adding proxy.sh"
     fi
 
-    # generate proxy file
+    # {{{> generate proxy file
     filename="proxy_$(date +%s).sh"
     echo "rm -rf ${filename}"
     
@@ -41,6 +56,8 @@ function set_proxy() {
     chmod +x ${filename}
     echo "${passwd}" | sudo -S mv ${filename} /etc/profile.d/proxy.sh
     # sudo_run "chmod +x /etc/profile.d/proxy.sh"
+    # <}}}
+
     source /etc/profile.d/proxy.sh
 }
 
@@ -226,7 +243,7 @@ function install_software() {
     for((i=0;i<${software_count};i++))
     do
         key=${software_install_keys[${i}]}
-        if test ${software_install_opts[${key}]} -eq 1; then
+        if test "${software_install_opts[${key}]}" = "1"; then
             install_specified_software ${key}
         fi
     done
@@ -269,17 +286,7 @@ function main() {
     set_global_variable
     # <}}}
 
-    ## define variable
-    proxy_ip_addr="127.0.0.1"
-    passwd=""
-    # 软件安装标识数组
-    declare -A software_install_opts
-    for((i=0;i<${software_count};i++))
-    do
-        key=${software_install_keys[${i}]}
-        software_install_opts[$key]=0
-    done
-
+    # {{{> 获取选项
     while getopts ":i:hao:" opt; do
         case "${opt}" in
             "i")
@@ -321,6 +328,7 @@ function main() {
                 ;;
         esac
     done
+    # <}}}
 
     get_require_info
     set_require_info
