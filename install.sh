@@ -72,7 +72,6 @@ function main() {
 
 
     if [ ${type} == "Darwin" ]; then
-        # color_print "error" "Not support now!!!"
         bash ${PWD}/scripts/run_on_mac.sh "$@"
     elif [ ${type} == "FreeBSD" ]; then
         color_print "error" "Not support now!!!"
