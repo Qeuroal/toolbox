@@ -65,6 +65,7 @@ function get_user_opts() {
                     "3: vagrant and virtualbox" \
                     "c: clash" \
                     "f: fonts" \
+                    "v: valgrind" \
                     "t: tmux"
                 opt_print "-h" "display this help"
                 color_print "warning" "Using opt -h and canceling all operation..."
@@ -241,6 +242,43 @@ function install_tmux() {
     # ln -sf "${HOME}/.tmux/.tmux.conf.local" ~/.tmux.conf.local
 }
 
+function install_valgrind()
+{
+
+    echo "install_valgrind"
+    # return
+    # install software
+    sudo_run "sudo -S apt update"
+
+    # download valgrind
+    filename="valgrind-3.21.0"
+    wget https://sourceware.org/pub/valgrind/${filename}.tar.bz2
+    if test "$(is_exist_file "${filename}.tar.bz2")" = 0
+    then
+        return
+    fi
+
+    # tidy
+    mkdir valgrind_tmp
+    mv valgrind-*.tar.bz2 valgrind_tmp
+    cd valgrind_tmp
+    color_print "info" "$PWD"
+
+    # unzip
+    bzip2 -d ${filename}.tar.bz2
+    tar -xf ${filename}.tar
+    cd ${filename}
+
+    # install
+    ./configure && make
+    sudo_run "sudo -S make install"
+
+    # remove folder unused
+    cd ${root_folder}
+    color_print "info" "$PWD"
+    rm -rf valgrind_tmp
+}
+
 function install_specified_software() {
     case "$1" in
         "0")
@@ -273,6 +311,10 @@ function install_specified_software() {
         "f")
             color_print "info" "installing fonts"
             install_fonts
+            ;;
+        "v")
+            color_print "info" "installing valgrind"
+            install_valgrind
             ;;
         "t")
             color_print "info" "installing tmux"
