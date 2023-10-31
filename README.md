@@ -1,6 +1,9 @@
 # TODO
-install softwares
+
+install softwares and remove
 
 
 # support
+
 - Ubuntu
+- Mac
