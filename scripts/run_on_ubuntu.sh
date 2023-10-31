@@ -340,24 +340,32 @@ function install_software() {
 function install_fonts() {
 
     mkdir -p ~/.local/share/fonts
-    rm -rf ~/.local/share/fonts/Droid\ Sans\ Mono\ Nerd\ Font\ Complete.otf
 
     cd ${root_folder}/resource
+
+    # install Droid Sans Mono Nerd Font Complete
+    rm -rf ~/.local/share/fonts/Droid\ Sans\ Mono\ Nerd\ Font\ Complete.otf
     cp ./fonts/Droid\ Sans\ Mono\ Nerd\ Font\ Complete.otf ~/.local/share/fonts
 
-    # rm MesloLGS
+    # install MesloLGS
     rm -rf ~/.local/share/fonts/MesloLGS\ NF\ Bold\ Italic.ttf
     rm -rf ~/.local/share/fonts/MesloLGS\ NF\ Bold.ttf
     rm -rf ~/.local/share/fonts/MesloLGS\ NF\ Italic.ttf
     rm -rf ~/.local/share/fonts/MesloLGS\ NF\ Regular.ttf
 
-    # cp MesloLGS to fonts
     cp -f ./fonts/MesloLGS\ NF\ Bold\ Italic.ttf ~/.local/share/fonts
     cp -f ./fonts/MesloLGS\ NF\ Bold.ttf ~/.local/share/fonts
     cp -f ./fonts/MesloLGS\ NF\ Italic.ttf ~/.local/share/fonts
     cp -f ./fonts/MesloLGS\ NF\ Regular.ttf ~/.local/share/fonts
 
     # git clone https://github.com/abertsch/Menlo-for-Powerline.git ~/.local/share/fonts
+
+    # install JetBrainsMono
+    rm -rf ~/.local/share/fonts/JetBrainsMono\-Regular.ttf
+    rm -rf ~/.local/share/fonts/JetBrainsMonoNL\-Regular.ttf
+
+    cp -f ./fonts/JetBrainsMonoNL\-Regular.ttf ~/.local/share/fonts
+    cp -f ./fonts/JetBrainsMono\-Regular.ttf ~/.local/share/fonts
     
     sudo_run "sudo -S apt update"
     sudo_run "sudo -S apt -y install fontconfig"
