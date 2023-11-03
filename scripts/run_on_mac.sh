@@ -4,6 +4,9 @@ source ${PWD}/scripts/utils.sh
 
 
 function set_global_variable() {
+    installedSoftwareCount=36
+    installedSoftwareKeys=("0" "1" "2" "3" "4" "5" "6" "7" "8" "9" \
+        "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s" "t" "u" "v" "w" "x" "y" "z")
     # count for uninstalled software
     uninstalled_software_count=36
     # mark for uninstalled software
@@ -16,6 +19,15 @@ function set_global_variable() {
         key=${uninstalled_software_keys[${i}]}
         uninstalled_software_opts[$key]=0
     done
+
+    # 软件安装标识数组
+    declare -gA installedSoftwareOpts
+    for((i=0;i<${installedSoftwareCount};i++))
+    do
+        key=${installedSoftwareKeys[${i}]}
+        installedSoftwareOpts[$key]=0
+    done
+
     # root_folder: current folder
     root_folder=${PWD}
     color_print "info" "project root dir: $root_folder"
@@ -27,7 +39,7 @@ function set_global_variable() {
 
 # {{{> 获取选项
 function get_user_opts() {
-    while getopts ":i:hd:" opt; do
+    while getopts ":i:hd:o:" opt; do
         case "${opt}" in
             "i")
                 proxy_ip_addr="${OPTARG}"
@@ -37,14 +49,25 @@ function get_user_opts() {
                 # set opt
                 for((i=0;i<${#softwareStr};i++))
                 do
+                    uninstallOpt="${softwareStr:$i:1}"
+                    uninstalled_software_opts[${uninstallOpt}]=1
+                done
+                ;;
+            "o")
+                softwareStr="${OPTARG}"
+                # set opt
+                for((i=0;i<${#softwareStr};i++))
+                do
                     installOpt="${softwareStr:$i:1}"
-                    uninstalled_software_opts[${installOpt}]=1
+                    installedSoftwareOpts[${installOpt}]=1
                 done
                 ;;
             "h"|*)
                 echo "Options:"
                 opt_print "-i" "set proxy IP address, default: 127.0.0.1"
-                opt_print "-d" "choose to install software" \
+                opt_print "-o" "choose to install software" \
+                    "f: fonts"
+                opt_print "-d" "choose to uninstall software" \
                     "v: vscode"
                 opt_print "-h" "display this help"
                 color_print "warning" "Using opt -h and canceling all operation..."
@@ -61,6 +84,46 @@ function get_require_info() {
 
 function set_require_info() {
     echo "set_require_info"
+}
+
+# install software
+function install_software() {
+    color_print "error" "install_software"
+    for((i=0;i<${installedSoftwareCount};i++))
+    do
+        key=${installedSoftwareKeys[${i}]}
+        if test "${installedSoftwareOpts[${key}]}" = "1"; then
+            install_specified_software ${key}
+        fi
+    done
+}
+
+# install specified software
+function install_specified_software() {
+    case "$1" in
+        "f")
+            install_fonts
+            ;;
+        *)
+            color_print "error" "not support key \"${key}\""
+            ;;
+    esac
+}
+
+function install_fonts() {
+    color_print "info" "Installing fonts... ${root_folder}"
+
+    # instal Droid Sans
+    rm -rf ~/Library/Fonts/droid_sans_mono
+    cp -rf ${root_folder}/resource/fonts/droid_sans_mono ~/Library/Fonts/
+
+    # install JetBrainsMono
+    rm -rf ~/Library/Fonts/jetbrainsmono
+    cp -rf ${root_folder}/resource/fonts/jetbrainsmono ~/Library/Fonts/
+
+    # install MesloLGS
+    rm -rf ~/Library/Fonts/meslolgs
+    cp -rf ${root_folder}/resource/fonts/meslolgs ~/Library/Fonts/
 }
 
 function uninstall_specified_software() {
@@ -89,11 +152,6 @@ function uninstall_software() {
 
 }
 
-function install_software() {
-    echo "install_software"
-}
-
-
 function main() {
     color_print "info" "mac main params: $@"
 
@@ -103,8 +161,8 @@ function main() {
     get_require_info
     set_require_info
 
-    uninstall_software
     install_software
+    uninstall_software
 }
 
 main "$@"
