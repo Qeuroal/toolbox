@@ -230,9 +230,9 @@ function install_tmux() {
     backup_file "${HOME}/.tmux.conf.local"
     rm -rf ~/.tmux.conf
     rm -rf ~/.tmux.conf.local
-    cp -f ${root_folder}/resource/tmux.conf ~/.tmux.conf
-    cp -f ${root_folder}/resource/tmux.conf.local ~/.tmux.conf.local
-    yes y | tmux kill-server
+    cp -f ${root_folder}/resource/tmux/tmux.conf ~/.tmux.conf
+    # cp -f ${root_folder}/resource/tmux/tmux.conf.local ~/.tmux.conf.local
+    yes y | tmux kill-server -a
 
     ## method 2
     # git clone https://github.com/gpakosz/.tmux.git ~/.tmux
