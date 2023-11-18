@@ -63,6 +63,7 @@ function get_user_opts() {
                     "1: vim and zsh" \
                     "2: docker" \
                     "3: vagrant and virtualbox" \
+                    "a: anaconda config" \
                     "c: clash" \
                     "f: fonts" \
                     "v: valgrind" \
@@ -196,6 +197,14 @@ function install_docker() {
     # docker run --rm hello-world
 }
 
+function install_anaconda() {
+    echo "手动配置anaconda环境:"
+    echo "- 设置conda的base环境不自动激活: conda config --set auto_activate_base false"
+    echo "- 设置bash或zshSHELL环境下的conda配置: eval \"$(/home/qeuroal/anaconda3/bin/conda shell.<YOUR_SHELL_NAME> hook)\""
+    echo "    如: eval \"$(/home/qeuroal/anaconda3/bin/conda shell.zsh hook)\""
+    echo "- 运行: conda init 或 conda init zsh"
+}
+
 function install_vagrant_and_virtualbox() {
     # 安装 virtualbox
     sudo_run "sudo -S apt -y install virtualbox"
@@ -303,7 +312,10 @@ function install_specified_software() {
         "3")
             color_print "info" "installing vagrant and virtualbox"
             ;;
-
+        "a")
+            color_print "info" "configuring anaconda environment"
+            install_anaconda
+            ;;
         "c")
             color_print "info" "installing clash"
             install_clash
