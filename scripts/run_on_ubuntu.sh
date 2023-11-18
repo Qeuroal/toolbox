@@ -200,9 +200,9 @@ function install_docker() {
 function install_anaconda() {
     echo "手动配置anaconda环境:"
     echo "- 设置conda的base环境不自动激活: conda config --set auto_activate_base false"
-    echo "- 设置bash或zshSHELL环境下的conda配置: eval \"$(/home/qeuroal/anaconda3/bin/conda shell.<YOUR_SHELL_NAME> hook)\""
-    echo "    如: eval \"$(/home/qeuroal/anaconda3/bin/conda shell.zsh hook)\""
-    echo "- 运行: conda init 或 conda init zsh"
+    echo "- 设置bash或zshSHELL环境下的conda配置: eval \"\$(<YOUR_ANACONDA_PATH>/bin/conda shell.<YOUR_SHELL_NAME> hook)\""
+    echo "    如: eval \"\$(/home/qeuroal/anaconda3/bin/conda shell.zsh hook)\""
+    echo "- 运行: conda init zsh (recommand) 或 conda init (not recommand: default modify .bashrc)"
 }
 
 function install_vagrant_and_virtualbox() {
