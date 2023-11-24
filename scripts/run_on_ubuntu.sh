@@ -132,7 +132,7 @@ function set_require_info() {
 function install_vim() {
     git clone https://github.com/Qeuroal/vimart.git ~/vimart
     cd ~/vimart
-    # yes y | bash scripts/install.sh
+    yes y | bash scripts/install.sh
     bash scripts/install.sh
     cd ${root_folder}
 
@@ -140,7 +140,7 @@ function install_vim() {
     # go env -w GOPROXY=https://goproxy.cn
 
     # 安装 YouCompleteMe-all
-    # python3 ~/.vim/plugged/YouCompleteMe/install.py --all --verbose
+    python3 ~/.vim/plugged/YouCompleteMe/install.py --all --verbose
 }
 
 function install_zsh() {
