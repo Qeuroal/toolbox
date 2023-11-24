@@ -134,7 +134,7 @@ function install_vim() {
     cd ~/vimart
     # yes y | bash scripts/install.sh
     bash scripts/install.sh
-    opt_print "If you choose to install YouCompleteMe, please run:" "python3 ~/.vim/plugged/YouCompleteMe/install.py --all --verbose"
+    color_print "warning" "If you choose to install YouCompleteMe, please run:\n\tpython3 ~/.vim/plugged/YouCompleteMe/install.py --all --verbose"
     cd ${root_folder}
 
     # 设置国内代理
