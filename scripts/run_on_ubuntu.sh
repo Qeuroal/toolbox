@@ -133,7 +133,6 @@ function install_vim() {
     git clone https://github.com/Qeuroal/vimart.git ~/vimart
     cd ~/vimart
     yes y | bash scripts/install.sh
-    bash scripts/install.sh
     cd ${root_folder}
 
     # 设置国内代理
