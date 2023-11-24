@@ -60,9 +60,10 @@ function get_user_opts() {
                 opt_print "-a" "install all necessary software"
                 opt_print "-o" "choose to install software" \
                     "0: necessary" \
-                    "1: vim and zsh" \
-                    "2: docker" \
-                    "3: vagrant and virtualbox" \
+                    "1: vim" \
+                    "2: zsh"
+                    "3: docker" \
+                    "4: vagrant and virtualbox" \
                     "a: anaconda config" \
                     "c: clash" \
                     "f: fonts" \
@@ -131,14 +132,15 @@ function set_require_info() {
 function install_vim() {
     git clone https://github.com/Qeuroal/vimart.git ~/vimart
     cd ~/vimart
-    yes y | bash scripts/install.sh
+    # yes y | bash scripts/install.sh
+    bash scripts/install.sh
     cd ${root_folder}
 
     # 设置国内代理
     # go env -w GOPROXY=https://goproxy.cn
 
     # 安装 YouCompleteMe-all
-    python3 ~/.vim/plugged/YouCompleteMe/install.py --all --verbose
+    # python3 ~/.vim/plugged/YouCompleteMe/install.py --all --verbose
 }
 
 function install_zsh() {
@@ -299,17 +301,18 @@ function install_specified_software() {
             # vim
             color_print "info" "installing Vim"
             install_vim
-
+            ;;
+        "2")
             # zsh
             color_print "info" "installing Zsh"
             install_zsh
             ;;
-        "2")
+        "3")
             # docker
             color_print "info" "installing Dokcer"
             install_docker
             ;;
-        "3")
+        "4")
             color_print "info" "installing vagrant and virtualbox"
             ;;
         "a")
