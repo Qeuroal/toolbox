@@ -61,7 +61,7 @@ function get_user_opts() {
                 opt_print "-o" "choose to install software" \
                     "0: necessary" \
                     "1: vim" \
-                    "2: zsh"
+                    "2: zsh" \
                     "3: docker" \
                     "4: vagrant and virtualbox" \
                     "a: anaconda config" \
