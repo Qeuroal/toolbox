@@ -224,7 +224,7 @@ function get_linux_distro() {
 # 以 sudo 运行命令
 function sudo_run() {
     cmd="$1"
-    color_print "warn" "passwd: $passwd, run $cmd"
+    # color_print "warn" "passwd: $passwd, run $cmd"
     if test "${cmd}" != ""; then
         echo "${passwd}" | bash -c "${cmd}"
     fi
