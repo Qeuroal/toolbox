@@ -2,6 +2,7 @@
 
 source ${PWD}/scripts/utils.sh
 
+proxyPath="/opt/proxy.sh"
 # {{{> set global variable
 function set_global_variable() {
     # 软件个数
@@ -80,7 +81,7 @@ function get_user_opts() {
 
 function set_proxy() {
     # judge exist proxy file
-    if test "$(is_exist_file "/etc/profile.d/proxy.sh")" = 1 -a "${proxy_ip_addr}" = "127.0.0.1"; then
+    if test "$(is_exist_file "$proxyPath")" = 1 -a "${proxy_ip_addr}" = "127.0.0.1"; then
         color_print "warning" "canceling to add proxy.sh"
         return
     else
@@ -104,11 +105,11 @@ function set_proxy() {
     echo "export no_proxy=\"localhost,127.0.0.0/8,::1\"" >> ./${filename}
 
     chmod +x ${filename}
-    echo "${passwd}" | sudo -S mv ${filename} /etc/profile.d/proxy.sh
-    # sudo_run "chmod +x /etc/profile.d/proxy.sh"
+    echo "${passwd}" | sudo -S mv ${filename} $proxyPath
+    # sudo_run "chmod +x $proxyPath"
     # <}}}
 
-    source /etc/profile.d/proxy.sh
+    source $proxyPath
 }
 
 function get_require_info() {
@@ -150,7 +151,7 @@ function install_zsh() {
     sudo_run "chsh -s /bin/zsh"
 
     # yes y | sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-	source /etc/profile.d/proxy.sh
+	source $proxyPath
     # sudo_run "yes y | sh -c \"$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)\""
 	curl -JL -o install_oh_my_zsh.sh  https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
 	yes y | bash install_oh_my_zsh.sh \
