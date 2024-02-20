@@ -152,13 +152,24 @@ function install_zsh() {
 
     # yes y | sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 	source $proxyPath
-    # sudo_run "yes y | sh -c \"$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)\""
-	curl -JL -o install_oh_my_zsh.sh  https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
-	yes y | bash install_oh_my_zsh.sh \
-        && git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $HOME/.oh-my-zsh/custom/themes/powerlevel10k \
-        && git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting \
-        && git clone https://github.com/zsh-users/zsh-autosuggestions $HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions \
-        && rm -rf install_oh_my_zsh.sh
+
+    installOpt=n
+    read -n1 -p "Would you like to install oh-my-zsh? [y/n]" installOpt
+    echo ""
+    if [ "${installOpt}" = 'y' -o "${installOpt}" != 'Y' ]; then
+        # echo -e "\033[31m===> Canceling install ycm...\033[0m"
+        color_print "Info" "Installing oh-my-zsh..."
+
+
+        # sudo_run "yes y | sh -c \"$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)\""
+        curl -JL -o install_oh_my_zsh.sh  https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+        yes y | bash install_oh_my_zsh.sh \
+            && git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $HOME/.oh-my-zsh/custom/themes/powerlevel10k \
+            && git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting \
+            && git clone https://github.com/zsh-users/zsh-autosuggestions $HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions \
+            && rm -rf install_oh_my_zsh.sh
+    fi
+
 }
 
 function install_docker() {
