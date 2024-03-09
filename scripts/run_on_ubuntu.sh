@@ -160,16 +160,27 @@ function install_zsh() {
         # echo -e "\033[31m===> Canceling install ycm...\033[0m"
         color_print "Info" "Installing oh-my-zsh..."
 
-
-        # sudo_run "yes y | sh -c \"$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)\""
         curl -JL -o install_oh_my_zsh.sh  https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
         yes y | bash install_oh_my_zsh.sh \
             && git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $HOME/.oh-my-zsh/custom/themes/powerlevel10k \
             && git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting \
             && git clone https://github.com/zsh-users/zsh-autosuggestions $HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions \
             && rm -rf install_oh_my_zsh.sh
+    else
+
+        if test `cat ${HOME}/.zshrc | grep -c "# import aliases"` = 0
+        then
+            echo "" | tee -a ${HOME}/.zshrc > /dev/null
+            echo '# import aliases' | tee -a ${HOME}/.zshrc > /dev/null
+            # echo 'if [[ -f ~/.aliases ]]; then {source ~/.aliases}; fi'
+            echo '[[ -f ~/.aliases ]] && source ~/.aliases'
+            echo "" | tee -a ${HOME}/.zshrc > /dev/null
+        fi
     fi
 
+
+    # copy config
+    ln -s ${PWD}/resource/shell/.aliases ~/.aliases
 }
 
 function install_docker() {
