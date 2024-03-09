@@ -1,0 +1,17 @@
+
+# # zsh使用
+# if [[ "$SHELL" = '/bin/zsh' ]]; then
+#     # echo "zsh"
+# elif [[ "$SHELL" = 'bin/bash' ]]; then
+#     # echo "bash"
+# fi
+
+if [[ "$(uname)" = 'Linux' ]]; then
+    alias la="ls -a"
+elif [[ "$(uname)" = 'Darwin' ]]; then
+    alias openmd="open -a Typora"
+    alias la="ls -a"
+else
+    echo "not support $(uname)"
+fi
+
