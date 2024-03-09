@@ -167,20 +167,38 @@ function install_zsh() {
             && git clone https://github.com/zsh-users/zsh-autosuggestions $HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions \
             && rm -rf install_oh_my_zsh.sh
     else
+        color_print "Info" "Installing zim..."
+        curl -fsSL https://raw.githubusercontent.com/zimfw/install/master/install.zsh | zsh
 
-        if test `cat ${HOME}/.zshrc | grep -c "# import aliases"` = 0
+        if test `cat ~/.zimrc | grep -c 'zmodule romkatv/powerlevel10k'` = 0
         then
-            echo "" | tee -a ${HOME}/.zshrc > /dev/null
-            echo '# import aliases' | tee -a ${HOME}/.zshrc > /dev/null
-            # echo 'if [[ -f ~/.aliases ]]; then {source ~/.aliases}; fi'
-            echo '[[ -f ~/.aliases ]] && source ~/.aliases'
-            echo "" | tee -a ${HOME}/.zshrc > /dev/null
+            echo "" | tee -a ~/.zimrc > /dev/null
+            echo 'zmodule romkatv/powerlevel10k' | tee -a ~/.zimrc > /dev/null
         fi
     fi
 
+    # config
+    if test `cat ${HOME}/.zshrc | grep -c "# import aliases"` = 0
+    then
+        echo "" | tee -a ${HOME}/.zshrc > /dev/null
+        echo '# import aliases' | tee -a ${HOME}/.zshrc > /dev/null
+        # echo 'if [[ -f ~/.aliases ]]; then {source ~/.aliases}; fi'
+        echo '[[ -f ~/.aliases ]] && source ~/.aliases'
+        echo "" | tee -a ${HOME}/.zshrc > /dev/null
+    fi
 
     # copy config
-    ln -s ${PWD}/resource/shell/.aliases ~/.aliases
+    if [[ ! -f ~/.aliases ]]; then
+        ln -s ${PWD}/resource/shell/.aliases ~/.aliases
+    else
+        overlayOpt=n
+        read -n1 -p 'Would you like to overlay ~/.aliases? [y/n]' installOpt
+        echo ""
+        if [ "${installOpt}" = 'y' -o "${installOpt}" != 'Y' ]; then
+            rm -f ~/.aliases
+            ln -s ${PWD}/resource/shell/.aliases ~/.aliases
+        fi
+    fi
 }
 
 function install_docker() {
