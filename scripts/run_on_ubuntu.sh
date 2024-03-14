@@ -183,7 +183,7 @@ function install_zsh() {
         echo "" | tee -a ${HOME}/.zshrc > /dev/null
         echo '# import aliases' | tee -a ${HOME}/.zshrc > /dev/null
         # echo 'if [[ -f ~/.aliases ]]; then {source ~/.aliases}; fi'
-        echo '[[ -f ~/.aliases ]] && source ~/.aliases'
+        echo '[[ -f ~/.aliases ]] && source ~/.aliases' | tee -a ${HOME}/.zshrc > /dev/null
         echo "" | tee -a ${HOME}/.zshrc > /dev/null
     fi
 
