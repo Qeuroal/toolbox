@@ -156,7 +156,7 @@ function install_zsh() {
     installOpt=n
     read -n1 -p "Would you like to install oh-my-zsh? [y/n]" installOpt
     echo ""
-    if [ "${installOpt}" = 'y' -o "${installOpt}" != 'Y' ]; then
+    if [ "${installOpt}" = 'y' -o "${installOpt}" = 'Y' ]; then
         # echo -e "\033[31m===> Canceling install ycm...\033[0m"
         color_print "Info" "Installing oh-my-zsh..."
 
