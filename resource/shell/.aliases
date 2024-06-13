@@ -8,6 +8,7 @@
 
 if [[ "$(uname)" = 'Linux' ]]; then
     alias la="ls -ah"
+    alias srcproxy="source /opt/proxy.sh"
 elif [[ "$(uname)" = 'Darwin' ]]; then
     alias openmd="open -a Typora"
     alias la="ls -ah"
@@ -15,5 +16,5 @@ else
     echo "not support $(uname)"
 fi
 
-alias mtags="ctags --fields=+iaS --extra=+q --c-kinds=+p -R ."
+alias gtags="ctags --fields=+iaS --extra=+q --c-kinds=+p -R ."
 
