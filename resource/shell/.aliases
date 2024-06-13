@@ -12,6 +12,7 @@ if [[ "$(uname)" = 'Linux' ]]; then
 elif [[ "$(uname)" = 'Darwin' ]]; then
     alias openmd="open -a Typora"
     alias la="ls -ah"
+    alias srcproxy="export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890"
 else
     echo "not support $(uname)"
 fi
