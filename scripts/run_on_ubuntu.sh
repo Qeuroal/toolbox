@@ -189,14 +189,14 @@ function install_zsh() {
 
     # copy config
     if [[ ! -f ~/.aliases ]]; then
-        ln -s ${PWD}/resource/shell/.aliases ~/.aliases
+        ln -s ${PWD}/resource/aliases/.aliases ~/.aliases
     else
         overlayOpt=n
         read -n1 -p 'Would you like to overlay ~/.aliases? [y/n]' installOpt
         echo ""
         if [ "${installOpt}" = 'y' -o "${installOpt}" != 'Y' ]; then
             rm -f ~/.aliases
-            ln -s ${PWD}/resource/shell/.aliases ~/.aliases
+            ln -s ${PWD}/resource/aliases/.aliases ~/.aliases
         fi
     fi
 }
