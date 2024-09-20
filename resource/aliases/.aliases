@@ -1,0 +1,21 @@
+
+# # zsh使用
+# if [[ "$SHELL" = '/bin/zsh' ]]; then
+#     # echo "zsh"
+# elif [[ "$SHELL" = 'bin/bash' ]]; then
+#     # echo "bash"
+# fi
+
+if [[ "$(uname)" = 'Linux' ]]; then
+    alias la="ls -ah"
+    alias srcproxy="source /opt/proxy.sh"
+elif [[ "$(uname)" = 'Darwin' ]]; then
+    alias openmd="open -a Typora"
+    alias la="ls -ah"
+    alias srcproxy="export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890"
+else
+    echo "not support $(uname)"
+fi
+
+alias gtags="ctags --fields=+iaS --extra=+q --c-kinds=+p -R ."
+
