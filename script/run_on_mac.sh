@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ${PWD}/scripts/utils.sh
+source ${PWD}/script/utils.sh
 
 
 function set_global_variable() {

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ${PWD}/scripts/utils.sh
+source ${PWD}/script/utils.sh
 
 proxyPath="/opt/proxy.sh"
 # {{{> set global variable
@@ -133,8 +133,8 @@ function set_require_info() {
 function install_vim() {
     git clone https://github.com/Qeuroal/vimart.git ~/vimart
     cd ~/vimart
-    # yes y | bash scripts/install.sh
-    bash scripts/install.sh
+    # yes y | bash script/install.sh
+    bash script/install.sh
     color_print "warning" "If you choose to install YouCompleteMe, please run:\n\tpython3 ~/.vim/plugged/YouCompleteMe/install.py --all --verbose"
     cd ${root_folder}
 

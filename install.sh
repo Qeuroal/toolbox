@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ${PWD}/scripts/utils.sh
+source ${PWD}/script/utils.sh
 
 function run_on_linux() {
     # echo "run_on_linux: $@"
@@ -10,7 +10,7 @@ function run_on_linux() {
     case "${distro}" in 
         "Ubuntu")
             # color_print "error" "not support ${distro}"
-            bash ${PWD}/scripts/run_on_ubuntu.sh "$@"
+            bash ${PWD}/script/run_on_ubuntu.sh "$@"
             ;;
         "Deepin")
             color_print "error" "not support ${distro}"
@@ -72,7 +72,7 @@ function main() {
 
 
     if [ ${type} == "Darwin" ]; then
-        bash ${PWD}/scripts/run_on_mac.sh "$@"
+        bash ${PWD}/script/run_on_mac.sh "$@"
     elif [ ${type} == "FreeBSD" ]; then
         color_print "error" "Not support now!!!"
     elif [ ${type} == "Linux" ]; then
