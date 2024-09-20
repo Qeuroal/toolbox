@@ -304,4 +304,37 @@ function copyImgcat() {
 #<}}}
 
 
+#{{{> ranger common
+function configRangerCommon() {
+    copyImgcat
+    rm -rf ~/.config/ranger
+    ln -sf `realpath ${root_folder}/assets/ranger` ${HOME}/.config/ranger
+    
+    # export RANGER_LOAD_DEFAULT_RC=FALSE
+    if [ $(is_exist_file "${HOME}/.zshrc") -eq 1 ] -a [ `cat "${HOME}/.zshrc" | grep -c 'export RANGER_LOAD_DEFAULT_RC=FALSE'` = 0 ]; then
+        echo '' | tee -a ${HOME}/.zshrc > /dev/null
+        echo 'export RANGER_LOAD_DEFAULT_RC=FALSE' | tee -a ${HOME}/.zshrc > /dev/null
+    fi
+
+    if [ $(is_exist_file "${HOME}/.bashrc") -eq 1 ] -a [ `cat "${HOME}/.bashrc" | grep -c 'export RANGER_LOAD_DEFAULT_RC=FALSE'` = 0 ]; then
+        echo '' | tee -a ${HOME}/.bashrc > /dev/null
+        echo 'export RANGER_LOAD_DEFAULT_RC=FALSE' | tee -a ${HOME}/.bashrc > /dev/null
+    fi
+
+    if [ $(is_exist_file "${HOME}/.bash_profile") -eq 1 ] -a [ `cat "${HOME}/.bash_profile" | grep -c 'export RANGER_LOAD_DEFAULT_RC=FALSE'` = 0 ]; then
+        echo '' | tee -a ${HOME}/.bash_profile > /dev/null
+        echo 'export RANGER_LOAD_DEFAULT_RC=FALSE' | tee -a ${HOME}/.bash_profile > /dev/null
+    fi
+
+    # aliase
+    # alias ra='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
+    if [ $(is_exist_file "${HOME}/.zshrc") -eq 1 ] -a [ `cat "${HOME}/.zshrc" | grep -c 'export RANGER_LOAD_DEFAULT_RC=FALSE'` = 0 ]; then
+        echo '' | tee -a ${HOME}/.zshrc > /dev/null
+        echo 'export RANGER_LOAD_DEFAULT_RC=FALSE' | tee -a ${HOME}/.zshrc > /dev/null
+    fi
+
+}
+#<}}}
+
+
 

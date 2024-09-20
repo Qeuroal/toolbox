@@ -332,6 +332,12 @@ function install_valgrind()
     rm -rf valgrind_tmp
 }
 
+
+function installRanger() {
+   sudo apt install ranger
+}
+
+
 function install_specified_software() {
     case "$1" in
         "0")

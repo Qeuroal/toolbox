@@ -126,6 +126,14 @@ function install_fonts() {
     cp -rf ${root_folder}/assets/fonts/meslolgs ~/Library/Fonts/
 }
 
+function install_ranger() {
+    color_print "info" "Installing ranger..."
+
+    brew install ranger
+    brew install libcaca highlight atool lynx w3m elinks poppler transmission mediainfo exiftool
+    brew install highlight
+}
+
 function uninstall_specified_software() {
     case "$1" in
         "v")
