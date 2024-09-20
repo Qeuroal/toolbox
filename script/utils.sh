@@ -297,3 +297,11 @@ function get_json_file_value() {
 # <}}}
 
 
+#{{{> imgcat
+function copyImgcat() {
+    sudo cp ${root_folder}/assets/imgcat/imgcat /usr/local/bin
+}
+#<}}}
+
+
+
