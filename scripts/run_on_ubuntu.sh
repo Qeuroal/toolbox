@@ -262,8 +262,8 @@ function install_vagrant_and_virtualbox() {
 }
 
 function install_clash() {
-    chmod +x ${root_folder}/assets/clash
-    sudo_run "sudo -S mv ${root_folder}/assets/clash /usr/local/bin/"
+    chmod +x ${root_folder}/assets/clash/clash
+    sudo_run "sudo -S mv ${root_folder}/assets/clash/clash /usr/local/bin/"
 
     color_print "warning" "Please do following steps:"
     echo " 1. 执行 clash 进行初始化"
