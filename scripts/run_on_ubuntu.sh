@@ -189,14 +189,14 @@ function install_zsh() {
 
     # copy config
     if [[ ! -f ~/.aliases ]]; then
-        ln -s ${PWD}/resource/aliases/.aliases ~/.aliases
+        ln -s ${PWD}/assets/aliases/.aliases ~/.aliases
     else
         overlayOpt=n
         read -n1 -p 'Would you like to overlay ~/.aliases? [y/n]' installOpt
         echo ""
         if [ "${installOpt}" = 'y' -o "${installOpt}" != 'Y' ]; then
             rm -f ~/.aliases
-            ln -s ${PWD}/resource/aliases/.aliases ~/.aliases
+            ln -s ${PWD}/assets/aliases/.aliases ~/.aliases
         fi
     fi
 }
@@ -262,8 +262,8 @@ function install_vagrant_and_virtualbox() {
 }
 
 function install_clash() {
-    chmod +x ${root_folder}/resource/clash
-    sudo_run "sudo -S mv ${root_folder}/resource/clash /usr/local/bin/"
+    chmod +x ${root_folder}/assets/clash
+    sudo_run "sudo -S mv ${root_folder}/assets/clash /usr/local/bin/"
 
     color_print "warning" "Please do following steps:"
     echo " 1. 执行 clash 进行初始化"
@@ -283,8 +283,8 @@ function install_tmux() {
     backup_file "${HOME}/.tmux.conf.local"
     rm -rf ~/.tmux.conf
     rm -rf ~/.tmux.conf.local
-    cp -f ${root_folder}/resource/tmux/tmux.conf ~/.tmux.conf
-    # cp -f ${root_folder}/resource/tmux/tmux.conf.local ~/.tmux.conf.local
+    cp -f ${root_folder}/assets/tmux/tmux.conf ~/.tmux.conf
+    # cp -f ${root_folder}/assets/tmux/tmux.conf.local ~/.tmux.conf.local
     yes y | tmux kill-server -a
 
     ## method 2
@@ -398,7 +398,7 @@ function install_fonts() {
 
     mkdir -p ~/.local/share/fonts
 
-    cd ${root_folder}/resource
+    cd ${root_folder}/assets
 
     # install Droid Sans Mono Nerd Font Complete
         # rm -rf ~/.local/share/fonts/Droid\ Sans\ Mono\ Nerd\ Font\ Complete.otf

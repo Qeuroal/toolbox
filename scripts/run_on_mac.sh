@@ -115,15 +115,15 @@ function install_fonts() {
 
     # instal Droid Sans
     rm -rf ~/Library/Fonts/droid_sans_mono
-    cp -rf ${root_folder}/resource/fonts/droid_sans_mono ~/Library/Fonts/
+    cp -rf ${root_folder}/assets/fonts/droid_sans_mono ~/Library/Fonts/
 
     # install JetBrainsMono
     rm -rf ~/Library/Fonts/jetbrainsmono
-    cp -rf ${root_folder}/resource/fonts/jetbrainsmono ~/Library/Fonts/
+    cp -rf ${root_folder}/assets/fonts/jetbrainsmono ~/Library/Fonts/
 
     # install MesloLGS
     rm -rf ~/Library/Fonts/meslolgs
-    cp -rf ${root_folder}/resource/fonts/meslolgs ~/Library/Fonts/
+    cp -rf ${root_folder}/assets/fonts/meslolgs ~/Library/Fonts/
 }
 
 function uninstall_specified_software() {
