@@ -17,5 +17,8 @@ else
     echo "not support $(uname)"
 fi
 
+# ctags
 alias gtags="ctags --fields=+iaS --extra=+q --c-kinds=+p -R ."
 
+# ranger
+alias ra='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
