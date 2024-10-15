@@ -8,17 +8,52 @@
 
 if [[ "$(uname)" = 'Linux' ]]; then
     alias la="ls -ah"
-    alias srcproxy="source /opt/proxy.sh"
+    # alias srcproxy="source /opt/proxy.sh"
+    alias srcproxy="export HTTP_PROXY=http://127.0.0.1:7890 HTTPS_PROXY=http://127.0.0.1:7890 FTP_PROXY=http://127.0.0.1:7890 ALL_PROXY=socks://127.0.0.1:7890 NO_PROXY=localhost,127.0.0.0/8,::1 http_proxy=http://127.0.0.1:7890 https_proxy=http://127.0.0.1:7890 ftp_proxy=http://127.0.0.1:7890 all_proxy=socks://127.0.0.1:7890 no_proxy=localhost,127.0.0.0/8,::1"
+
 elif [[ "$(uname)" = 'Darwin' ]]; then
     alias openmd="open -a Typora"
     alias la="ls -ah"
-    alias srcproxy="export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890"
+    # alias srcproxy="export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890"
+    alias srcproxy="export HTTP_PROXY=http://127.0.0.1:7890 HTTPS_PROXY=http://127.0.0.1:7890 FTP_PROXY=http://127.0.0.1:7890 ALL_PROXY=socks://127.0.0.1:7890 NO_PROXY=localhost,127.0.0.0/8,::1 http_proxy=http://127.0.0.1:7890 https_proxy=http://127.0.0.1:7890 ftp_proxy=http://127.0.0.1:7890 all_proxy=socks://127.0.0.1:7890 no_proxy=localhost,127.0.0.0/8,::1"
 else
     echo "not support $(uname)"
 fi
 
-# ctags
 alias gtags="ctags --fields=+iaS --extra=+q --c-kinds=+p -R ."
 
-# ranger
-alias ra='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
+# type ranger &> /dev/null
+if command -v ranger > /dev/null; then
+    alias ra='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
+fi
+
+# type joshuto &> /dev/null
+if command -v joshuto > /dev/null; then
+    function joshuto_remain() {
+        ID="$$"
+        mkdir -p /tmp/$USER
+        OUTPUT_FILE="/tmp/$USER/joshuto-cwd-$ID"
+        env joshuto --output-file "$OUTPUT_FILE" $@
+        exit_code=$?
+
+        case "$exit_code" in
+            # regular exit
+            0)
+                ;;
+            # output contains current directory
+            101)
+                JOSHUTO_CWD=$(cat "$OUTPUT_FILE")
+                cd "$JOSHUTO_CWD"
+                ;;
+            # output selected files
+            102)
+                ;;
+            *)
+                echo "Exit code: $exit_code"
+                ;;
+        esac
+        rm -rf $OUTPUT_FILE
+    }
+    alias jr='joshuto_remain'
+fi
+
