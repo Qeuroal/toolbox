@@ -1,0 +1,162 @@
+# color
+#
+[colors]
+# 如果为‘true’，则使用亮色变体绘制粗体文本。
+# draw_bold_text_with_bright_colors = true | false
+draw_bold_text_with_bright_colors = false
+
+## Default colors
+#
+[colors.primary]
+background = '0x1e2127'
+foreground = '0xabb2bf'
+
+## Bright and dim foreground colors
+#
+# The dimmed foreground color is calculated automatically if it is not present.
+# If the bright foreground color is not set, or `draw_bold_text_with_bright_colors`
+# is `false`, the normal foreground color will be used.
+# dim_foreground = '0x9a9a9a'
+bright_foreground = '0xe6efff'
+
+## Cursor colors
+#
+# Colors which should be used to draw the terminal cursor. If these are unset,
+# the cursor color will be the inverse of the cell color.
+# [colors.cursor]
+# text = '0x000000'
+# cursor = '0xffffff'
+
+## Normal colors
+#
+[colors.normal]
+black   = '0x1e2127'
+red     = '0xe06c75'
+green   = '0x98c379'
+yellow  = '0xd19a66'
+blue    = '0x61afef'
+magenta = '0xc678dd'
+cyan    = '0x56b6c2'
+white   = '0x828791'
+
+## Bright colors
+#
+[colors.bright]
+black   = '0x5c6370'
+red     = '0xe06c75'
+green   = '0x98c379'
+yellow  = '0xd19a66'
+blue    = '0x61afef'
+magenta = '0xc678dd'
+cyan    = '0x56b6c2'
+white   = '0xe6efff'
+
+## Dim colors
+#
+# If the dim colors are not set, they will be calculated automatically based
+# on the `normal` colors.
+[colors.dim]
+black   = '0x1e2127'
+red     = '0xe06c75'
+green   = '0x98c379'
+yellow  = '0xd19a66'
+blue    = '0x61afef'
+magenta = '0xc678dd'
+cyan    = '0x56b6c2'
+white   = '0x828791'
+
+## Indexed Colors
+#
+# The indexed colors include all colors from 16 to 256.
+# When these are not set, they're filled with sensible defaults.
+[[colors.indexed_colors]]
+index = 16
+color = '0x000000'
+
+
+# font setting
+#
+[font]
+size = 20.0
+normal = { family = "JetBrainsMonoNL Nerd Font", style = "Regular" }
+bold = { family = "JetBrainsMonoNL Nerd Font", style = "Bold" }
+italic = { family = "JetBrainsMonoNL Nerd Font", style = "Italic" }
+bold_italic = { family = "JetBrainsMonoNL Nerd Font", style = "Bold Italic" }
+
+offset = { x = 0, y = 1 }
+glyph_offset = { x = 0, y = 1 }
+
+
+[window]
+# padding = { x = 22, y = 22 }
+decorations = "full"
+# dimensions = { columns = 80, lines = 25 }
+# startup_mode = "Windowed" | "Maximized" | "Fullscreen" | "SimpleFullscreen"
+startup_mode = "Maximized"
+dynamic_title = true
+opacity = 0.9
+
+
+[scrolling]
+# 回滚缓冲区中的最大行数,指定“0”将禁用滚动。
+# history = 100000
+history = 0
+# 滚动行数
+multiplier = 4
+
+
+[cursor]
+style = { shape = "block", blinking = "Never" }
+unfocused_hollow = true
+thickness = 0.3
+
+
+[selection]
+semantic_escape_chars = ",│`|:\"'' ()[]{}<>\t"
+save_to_clipboard = true
+
+
+
+# live_config_reload: true
+
+
+[keyboard]
+bindings = [
+    # { key = "R", mods = "Super", mode = "Vi|Search", chars = "x0c" },
+    # { key = R, mods = Command, mode = ~Vi|~Search, chars = "\x0c" },
+    # { key = R, mods = Command, mode = ~Vi|~Search, action = ClearHistory },
+    # { key = W, mods = Command, action = Hide },
+    # { key = W, mods = Command|Shift, action = Quit },
+    # { key = N, mods = Command, action = SpawnNewInstance },
+    { key = "n", mods = "Control | Shift", action = "CreateNewWindow" },
+    { key = "t", mods = "Control | Shift", action = "CreateNewTab" },
+    { key = "Tab", mods = "Control", action = "SelectNextTab" },
+    { key = "Tab", mods = "Control | Shift", action = "SelectPreviousTab" },
+    { key = "c", mods = "Control | Shift", action = "Copy" },
+    { key = "v", mods = "Control | Shift", action = "Paste" },
+    { key = "f", mods = "Control", action = "SearchFocusNext" },
+    # { key = "w", mods = "Control | Shift", action = "" },
+    # { key = Left, mods = Alt, chars = "\x1bb" } # Skip word left,
+    # { key = Right, mods = Alt, chars = "\x1bf" } # Skip word right,
+    # { key = Left, mods = Command, chars = "\x01" } # Home,
+    # { key = Right, mods = Command, chars = "\x05" } # End,
+    # { key = Back, mods = Command, chars = "\x15" } # Delete line,
+    # { key = Back, mods = Alt, chars = "\x1b\x7f" } # Delete word,
+]
+
+# key_bindings:
+#   - { key: R, mods: Command, mode: ~Vi|~Search, chars: "\x0c" }
+#   - { key: R, mods: Command, mode: ~Vi|~Search, action: ClearHistory }
+#   - { key: W, mods: Command, action: Hide }
+#   - { key: W, mods: Command|Shift, action: Quit }
+#   - { key: N, mods: Command, action: SpawnNewInstance }
+#   - { key: T, mods: Command, action: CreateNewWindow }
+#   - { key: Left, mods: Alt, chars: "\x1bb" } # Skip word left
+#   - { key: Right, mods: Alt, chars: "\x1bf" } # Skip word right
+#   - { key: Left, mods: Command, chars: "\x01" } # Home
+#   - { key: Right, mods: Command, chars: "\x05" } # End
+#   - { key: Back, mods: Command, chars: "\x15" } # Delete line
+#   - { key: Back, mods: Alt, chars: "\x1b\x7f" } # Delete word
+
+
+
