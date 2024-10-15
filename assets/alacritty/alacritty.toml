@@ -115,7 +115,7 @@ thickness = 0.3
 semantic_escape_chars = ",│`|:\"'' ()[]{}<>\t"
 save_to_clipboard = true
 
-
+# general
 # live_config_reload = true
 
 
@@ -132,7 +132,6 @@ bindings = [
     { key = "C", mods = "Control | Shift", action = "Copy" },
     { key = "V", mods = "Control | Shift", action = "Paste" },
     { key = "F", mods = "Command | Control", mode = "~Vi", action = "ToggleFullscreen" },
-# "F"	"Command|Control"		"ToggleFullscreen"
 ]
 
 
