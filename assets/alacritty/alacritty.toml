@@ -102,7 +102,7 @@ opacity = 0.9
 # history = 100000
 history = 0
 # 滚动行数
-multiplier = 4
+multiplier = 3
 
 
 [cursor]
@@ -116,47 +116,25 @@ semantic_escape_chars = ",│`|:\"'' ()[]{}<>\t"
 save_to_clipboard = true
 
 
+# live_config_reload = true
 
-# live_config_reload: true
+
+[mouse]
+hide_when_typing = false
 
 
 [keyboard]
 bindings = [
-    # { key = "R", mods = "Super", mode = "Vi|Search", chars = "x0c" },
-    # { key = R, mods = Command, mode = ~Vi|~Search, chars = "\x0c" },
-    # { key = R, mods = Command, mode = ~Vi|~Search, action = ClearHistory },
-    # { key = W, mods = Command, action = Hide },
-    # { key = W, mods = Command|Shift, action = Quit },
-    # { key = N, mods = Command, action = SpawnNewInstance },
-    { key = "n", mods = "Control | Shift", action = "CreateNewWindow" },
-    { key = "t", mods = "Control | Shift", action = "CreateNewTab" },
+    { key = "N", mods = "Control | Shift", action = "CreateNewWindow" },
+    { key = "T", mods = "Control | Shift", action = "CreateNewTab" },
     { key = "Tab", mods = "Control", action = "SelectNextTab" },
     { key = "Tab", mods = "Control | Shift", action = "SelectPreviousTab" },
-    { key = "c", mods = "Control | Shift", action = "Copy" },
-    { key = "v", mods = "Control | Shift", action = "Paste" },
-    { key = "f", mods = "Control", action = "SearchFocusNext" },
-    # { key = "w", mods = "Control | Shift", action = "" },
-    # { key = Left, mods = Alt, chars = "\x1bb" } # Skip word left,
-    # { key = Right, mods = Alt, chars = "\x1bf" } # Skip word right,
-    # { key = Left, mods = Command, chars = "\x01" } # Home,
-    # { key = Right, mods = Command, chars = "\x05" } # End,
-    # { key = Back, mods = Command, chars = "\x15" } # Delete line,
-    # { key = Back, mods = Alt, chars = "\x1b\x7f" } # Delete word,
+    { key = "C", mods = "Control | Shift", action = "Copy" },
+    { key = "V", mods = "Control | Shift", action = "Paste" },
+    { key = "F", mods = "Command | Control", mode = "~Vi", action = "ToggleFullscreen" },
+# "F"	"Command|Control"		"ToggleFullscreen"
 ]
 
-# key_bindings:
-#   - { key: R, mods: Command, mode: ~Vi|~Search, chars: "\x0c" }
-#   - { key: R, mods: Command, mode: ~Vi|~Search, action: ClearHistory }
-#   - { key: W, mods: Command, action: Hide }
-#   - { key: W, mods: Command|Shift, action: Quit }
-#   - { key: N, mods: Command, action: SpawnNewInstance }
-#   - { key: T, mods: Command, action: CreateNewWindow }
-#   - { key: Left, mods: Alt, chars: "\x1bb" } # Skip word left
-#   - { key: Right, mods: Alt, chars: "\x1bf" } # Skip word right
-#   - { key: Left, mods: Command, chars: "\x01" } # Home
-#   - { key: Right, mods: Command, chars: "\x05" } # End
-#   - { key: Back, mods: Command, chars: "\x15" } # Delete line
-#   - { key: Back, mods: Alt, chars: "\x1b\x7f" } # Delete word
 
 
 
