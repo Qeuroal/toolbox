@@ -106,7 +106,7 @@ opacity = 0.9
 # history = 100000
 history = 0
 # 滚动行数
-multiplier = 3
+multiplier = 0
 
 
 [cursor]
@@ -117,7 +117,7 @@ thickness = 0.4
 
 [selection]
 semantic_escape_chars = ",│`|:\"'' ()[]{}<>\t"
-save_to_clipboard = true
+save_to_clipboard = false
 
 # general
 # live_config_reload = true
