@@ -77,7 +77,7 @@ color = '0x000000'
 # font setting
 #
 [font]
-size = 20.0
+size = 18.0
 normal = { family = "JetBrainsMonoNL Nerd Font", style = "Regular" }
 bold = { family = "JetBrainsMonoNL Nerd Font", style = "Bold" }
 italic = { family = "JetBrainsMonoNL Nerd Font", style = "Italic" }
@@ -108,7 +108,7 @@ multiplier = 3
 [cursor]
 style = { shape = "block", blinking = "Never" }
 unfocused_hollow = true
-thickness = 0.3
+thickness = 0.4
 
 
 [selection]
