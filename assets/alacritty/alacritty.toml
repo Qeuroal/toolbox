@@ -98,7 +98,7 @@ decorations = "full"
 # startup_mode = "Windowed" | "Maximized" | "Fullscreen" | "SimpleFullscreen"
 startup_mode = "Maximized"
 dynamic_title = true
-opacity = 0.9
+opacity = 0.95
 
 
 [scrolling]
