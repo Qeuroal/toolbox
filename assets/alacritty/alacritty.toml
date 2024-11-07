@@ -4,8 +4,6 @@
 # 如果为‘true’，则使用亮色变体绘制粗体文本。
 # draw_bold_text_with_bright_colors = true | false
 draw_bold_text_with_bright_colors = true
-cursor = { "text" = "#000000", "cursor" = "#ffffff" }
-vi_mode_cursor = { "text" = "#aaaaaa", "foreground" = "#ffffff" }
 
 ## Default colors
 #
@@ -25,9 +23,13 @@ bright_foreground = '0xe6efff'
 #
 # Colors which should be used to draw the terminal cursor. If these are unset,
 # the cursor color will be the inverse of the cell color.
-# [colors.cursor]
-# text = '0x000000'
-# cursor = '0xffffff'
+[colors.cursor]
+text = '#000000'
+cursor = '#ff6347'
+
+[colors.vi_mode_cursor]
+text = "#000000"
+cursor = "#ff6347"
 
 ## Normal colors
 #
