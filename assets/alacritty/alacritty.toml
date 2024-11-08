@@ -81,7 +81,7 @@ color = '0x000000'
 # font setting
 #
 [font]
-size = 18.0
+size = 21.0
 normal = { family = "JetBrainsMonoNL Nerd Font", style = "Regular" }
 bold = { family = "JetBrainsMonoNL Nerd Font", style = "Bold" }
 italic = { family = "JetBrainsMonoNL Nerd Font", style = "Italic" }
@@ -94,13 +94,14 @@ glyph_offset = { x = 0, y = 1 }
 [window]
 # padding = { x = 22, y = 22 }
 # decorations = "Full" | "None" | "Transparent" | "Buttonless"
-decorations = "Buttonless"
-dimensions = { columns = 110, lines = 28 }
+decorations = "Full"
+dimensions = { columns = 80, lines = 20 }
 # startup_mode = "Windowed" | "Maximized" | "Fullscreen" | "SimpleFullscreen"
-startup_mode = "Windowed"
+startup_mode = "Maximized"
 dynamic_title = true
 opacity = 0.95
 decorations_theme_variant = "Dark"
+resize_increments = true
 
 
 [scrolling]
@@ -137,6 +138,7 @@ bindings = [
     { key = "Tab", mods = "Control | Shift", action = "SelectPreviousTab" },
     { key = "C", mods = "Control | Shift", action = "Copy" },
     { key = "V", mods = "Control | Shift", action = "Paste" },
+    { key = "Q", mods = "Control | Shift", action = "Quit" },
     { key = "M", mods = "Control | Shift", mode = "~Vi", action = "ToggleMaximized" },
     { key = "F", mods = "Command | Control", mode = "~Vi", action = "ToggleFullscreen" },
 ]
