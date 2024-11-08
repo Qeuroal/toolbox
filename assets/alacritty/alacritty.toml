@@ -93,10 +93,11 @@ glyph_offset = { x = 0, y = 1 }
 
 [window]
 # padding = { x = 22, y = 22 }
-decorations = "full"
-# dimensions = { columns = 80, lines = 25 }
+# decorations = "Full" | "None" | "Transparent" | "Buttonless"
+decorations = "Buttonless"
+dimensions = { columns = 110, lines = 28 }
 # startup_mode = "Windowed" | "Maximized" | "Fullscreen" | "SimpleFullscreen"
-startup_mode = "Maximized"
+startup_mode = "Windowed"
 dynamic_title = true
 opacity = 0.95
 
@@ -135,6 +136,7 @@ bindings = [
     { key = "Tab", mods = "Control | Shift", action = "SelectPreviousTab" },
     { key = "C", mods = "Control | Shift", action = "Copy" },
     { key = "V", mods = "Control | Shift", action = "Paste" },
+    { key = "M", mods = "Control | Shift", mode = "~Vi", action = "ToggleMaximized" },
     { key = "F", mods = "Command | Control", mode = "~Vi", action = "ToggleFullscreen" },
 ]
 
