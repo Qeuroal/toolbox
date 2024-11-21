@@ -1,6 +1,7 @@
 # general
 #
-general.live_config_reload = true
+[general]
+live_config_reload = true
 
 # color
 #
@@ -142,10 +143,14 @@ bindings = [
     { key = "Q", mods = "Control | Shift", action = "Quit" },
     { key = "M", mods = "Control | Shift", mode = "~Vi", action = "ToggleMaximized" },
     { key = "F", mods = "Command | Control", mode = "~Vi", action = "ToggleFullscreen" },
-    { key = "PageUp", mods = "Shift", action = "ScrollPageUp" },
-    { key = "PageDown", mods = "Shift", action = "ScrollPageDown" },
-    { key = "PageUp", mods = "Control | Shift", action = "ScrollHalfPageUp" },
-    { key = "PageDown", mods = "Control | Shift", action = "ScrollHalfPageDown" },
+    { key = "PageUp", mods = "Shift", mode = "~Vi", action = "ScrollPageUp" },
+    { key = "PageDown", mods = "Shift", mode = "~Vi", action = "ScrollPageDown" },
+    { key = "PageUp", mods = "Control | Shift", mode = "~Vi", action = "ScrollHalfPageUp" },
+    { key = "PageDown", mods = "Control | Shift", mode = "~Vi", action = "ScrollHalfPageDown" },
+    { key = "B", mods = "Control | Shift", mode = "~Vi", action = "ScrollPageUp" },
+    { key = "f", mods = "Control | Shift", mode = "~Vi", action = "ScrollPageDown" },
+    { key = "U", mods = "Control | Shift", mode = "~Vi", action = "ScrollHalfPageUp" },
+    { key = "D", mods = "Control | Shift", mode = "~Vi", action = "ScrollHalfPageDown" },
 ]
 
 # [[keyboard.bindings]]
