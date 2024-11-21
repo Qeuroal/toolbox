@@ -132,8 +132,8 @@ hide_when_typing = false
 
 [keyboard]
 bindings = [
-    { key = "N", mods = "Control | Shift", action = "SpawnNewInstance" },
-    # { key = "N", mods = "Control | Shift", action = "CreateNewWindow" },
+    { key = "I", mods = "Control | Shift", action = "SpawnNewInstance" },
+    { key = "N", mods = "Control | Shift", action = "CreateNewWindow" },
     { key = "T", mods = "Control | Shift", action = "CreateNewTab" },
     { key = "Tab", mods = "Control", action = "SelectNextTab" },
     { key = "Tab", mods = "Control | Shift", action = "SelectPreviousTab" },
