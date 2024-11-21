@@ -1,3 +1,6 @@
+# general
+live_config_reload = true
+
 # color
 #
 [colors]
@@ -121,9 +124,6 @@ thickness = 0.35
 [selection]
 semantic_escape_chars = ",│`|:\"'' ()[]{}<>\t"
 save_to_clipboard = false
-
-# general
-live_config_reload = true
 
 [mouse]
 hide_when_typing = false
