@@ -106,7 +106,7 @@ startup_mode = "Maximized"
 dynamic_title = true
 opacity = 0.95
 decorations_theme_variant = "Dark"
-resize_increments = true
+# resize_increments = true      # make the dwm greater gap
 
 
 [scrolling]
