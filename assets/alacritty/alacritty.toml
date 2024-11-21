@@ -142,6 +142,10 @@ bindings = [
     { key = "Q", mods = "Control | Shift", action = "Quit" },
     { key = "M", mods = "Control | Shift", mode = "~Vi", action = "ToggleMaximized" },
     { key = "F", mods = "Command | Control", mode = "~Vi", action = "ToggleFullscreen" },
+    { key = "PageUp", mods = "Shift", action = "ScrollPageUp" },
+    { key = "PageDown", mods = "Shift", action = "ScrollPageDown" },
+    { key = "PageUp", mods = "Control | Shift", action = "ScrollHalfPageUp" },
+    { key = "PageDown", mods = "Control | Shift", action = "ScrollHalfPageDown" },
 ]
 
 # [[keyboard.bindings]]
