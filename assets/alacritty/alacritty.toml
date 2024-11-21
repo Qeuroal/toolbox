@@ -136,6 +136,7 @@ bindings = [
     { key = "I", mods = "Control | Shift", action = "SpawnNewInstance" },
     { key = "N", mods = "Control | Shift", action = "CreateNewWindow" },
     { key = "T", mods = "Control | Shift", action = "CreateNewTab" },
+    { key = "Q", mods = "Control | Shift", action = "Quit" },
     { key = "Tab", mods = "Control", action = "SelectNextTab" },
     { key = "Tab", mods = "Control | Shift", action = "SelectPreviousTab" },
     { key = "C", mods = "Control | Shift", action = "Copy" },
