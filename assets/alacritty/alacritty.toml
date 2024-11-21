@@ -107,7 +107,7 @@ resize_increments = true
 [scrolling]
 # 回滚缓冲区中的最大行数,指定“0”将禁用滚动。
 # history = 100000
-history = 0
+history = 100000
 # 滚动行数
 multiplier = 0
 
@@ -115,7 +115,7 @@ multiplier = 0
 [cursor]
 style = { shape = "block", blinking = "Never" }
 unfocused_hollow = true
-thickness = 0.4
+thickness = 0.35
 
 
 [selection]
@@ -123,7 +123,8 @@ semantic_escape_chars = ",│`|:\"'' ()[]{}<>\t"
 save_to_clipboard = false
 
 # general
-# live_config_reload = true
+[general]
+live_config_reload = true
 
 
 [mouse]
@@ -400,6 +401,6 @@ bindings = [
 # [[mouse.bindings]]
 # action = "PasteSelection"
 # mouse = "Middle"
-#
-#
-#
+
+
+
