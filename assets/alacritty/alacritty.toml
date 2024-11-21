@@ -123,9 +123,7 @@ semantic_escape_chars = ",│`|:\"'' ()[]{}<>\t"
 save_to_clipboard = false
 
 # general
-[general]
 live_config_reload = true
-
 
 [mouse]
 hide_when_typing = false
