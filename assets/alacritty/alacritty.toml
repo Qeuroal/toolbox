@@ -86,7 +86,7 @@ color = '0x000000'
 # font setting
 #
 [font]
-size = 21.0
+size = 20.0
 normal = { family = "JetBrainsMonoNL Nerd Font", style = "Regular" }
 bold = { family = "JetBrainsMonoNL Nerd Font", style = "Bold" }
 italic = { family = "JetBrainsMonoNL Nerd Font", style = "Italic" }
