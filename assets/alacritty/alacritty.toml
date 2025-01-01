@@ -2,6 +2,7 @@
 #
 [general]
 live_config_reload = true
+# working_directory = "C:\\Users\\Qeuroal"        # on Windows
 
 # color
 #
@@ -107,6 +108,10 @@ dynamic_title = true
 opacity = 0.95
 decorations_theme_variant = "Dark"
 # resize_increments = true      # make the dwm greater gap
+
+# # On Windows
+# [terminal.shell]
+# program = "cmd"
 
 
 [scrolling]
