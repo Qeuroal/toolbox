@@ -6,7 +6,7 @@ live_config_reload = true
 
 # import external files
 import = [
-    "./tokyonight/tokyonight_moon.toml"
+    "./onedark/onedarkpro_onedark.toml"
 ]
 
 
