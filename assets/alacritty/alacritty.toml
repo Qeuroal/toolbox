@@ -6,7 +6,7 @@ live_config_reload = true
 
 # import external files
 import = [
-    "./tokyonight/tokyonight_moon.toml"
+    "./onedark/onedarkpro_onedark.toml"
 ]
 
 
@@ -53,6 +53,8 @@ startup_mode = "Maximized"
 dynamic_title = true
 opacity = 0.95
 decorations_theme_variant = "Dark"
+# maping option of macos to alt
+option_as_alt = "OnlyLeft"
 # resize_increments = true      # make the dwm greater gap
 
 # # On Windows
