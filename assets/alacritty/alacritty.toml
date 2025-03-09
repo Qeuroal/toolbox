@@ -2,7 +2,7 @@
 #
 [general]
 live_config_reload = true
-# working_directory = "C:\\Users\\Qeuroal"        # on Windows
+working_directory = "C:\\Users\\Qeuroal"        # on Windows
 
 # import external files
 import = [
@@ -45,11 +45,9 @@ glyph_offset = { x = 0, y = 1 }
 
 [window]
 # padding = { x = 22, y = 22 }
-# decorations = "Full" | "None" | "Transparent" | "Buttonless"
-decorations = "Full"
-dimensions = { columns = 80, lines = 20 }
-# startup_mode = "Windowed" | "Maximized" | "Fullscreen" | "SimpleFullscreen"
-startup_mode = "Maximized"
+decorations = "Full" # "Full" | "None" | "Transparent" | "Buttonless"
+# dimensions = { columns = 80, lines = 20 } # !!!该选项导致windows无法最大化
+startup_mode = "Maximized" # "Windowed" | "Maximized" | "Fullscreen" | "SimpleFullscreen"
 dynamic_title = true
 opacity = 0.95
 decorations_theme_variant = "Dark"
@@ -58,8 +56,8 @@ option_as_alt = "OnlyLeft"
 # resize_increments = true      # make the dwm greater gap
 
 # # On Windows
-# [terminal.shell]
-# program = "cmd"
+[terminal.shell]
+program = "cmd"
 
 
 [scrolling]
