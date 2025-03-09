@@ -1,6 +1,6 @@
 # font
 font-family = "JetBrainsMonoNL Nerd Font"
-font-size = 20
+font-size = 21
 font-thicken = true
 font-thicken-strength = 255
 window-inherit-font-size = true
@@ -36,6 +36,11 @@ background-blur = true
 # window
 maximize = true
 # fullscreen = true
+window-decoration = auto
+gtk-titlebar = false
+
+# tab
+gtk-tabs-location = top
 
 # split
 unfocused-split-opacity = 0.7
@@ -43,3 +48,5 @@ split-divider-color = #3366ff
 
 # update
 auto-update = check
+
+
