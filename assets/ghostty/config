@@ -1,0 +1,45 @@
+# font
+font-family = "JetBrainsMonoNL Nerd Font"
+font-size = 20
+font-thicken = true
+font-thicken-strength = 255
+window-inherit-font-size = true
+window-title-font-family = "JetBrainsMonoNL Nerd Font"
+
+# cell
+adjust-cell-width = 0
+adjust-cell-height = 0
+
+# cursor
+cursor-style = block
+shell-integration-features = no-cursor
+cursor-style-blink = false
+cursor-color = #ff6347
+cursor-text = #ffffff
+macos-option-as-alt = true
+adjust-underline-thickness = 3
+adjust-cursor-thickness = 3
+adjust-overline-thickness = 3
+cursor-opacity = 1
+
+# mouse
+mouse-hide-while-typing = true
+
+# theme
+# onedarkpro, details: ghostty +list-themes
+theme = onedarkpro
+
+# background
+background-opacity = 0.9
+background-blur = true
+
+# window
+maximize = true
+# fullscreen = true
+
+# split
+unfocused-split-opacity = 0.7
+split-divider-color = #3366ff
+
+# update
+auto-update = check
