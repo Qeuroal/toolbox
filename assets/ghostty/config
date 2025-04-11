@@ -17,7 +17,7 @@ cursor-style-blink = false
 cursor-color = #ff6347
 cursor-text = #ffffff
 macos-option-as-alt = true
-adjust-underline-thickness = 3
+adjust-underline-thickness = 2
 adjust-cursor-thickness = 3
 adjust-overline-thickness = 3
 cursor-opacity = 1
@@ -49,4 +49,10 @@ split-divider-color = #3366ff
 # update
 auto-update = check
 
-
+# keymapping
+keybind = ctrl+shift+u=scroll_page_up
+keybind = ctrl+shift+d=scroll_page_down
+keybind = ctrl+shift+d=scroll_page_down
+keybind = super+comma=unbind
+keybind = ctrl+shift+f=write_scrollback_file:paste
+# keybind = ctrl+shift+f=write_scrollback_file:open
