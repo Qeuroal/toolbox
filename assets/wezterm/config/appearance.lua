@@ -22,7 +22,7 @@ return {
    colors = colors,
 
    -- background
-   background = backdrops:initial_options(false), -- set to true if you want wezterm to start on focus mode
+   background = backdrops:initial_options(true), -- set to true if you want wezterm to start on focus mode
 
    -- scrollbar
    enable_scroll_bar = true,
@@ -41,8 +41,8 @@ return {
   integrated_title_button_style = "Windows",
   integrated_title_button_color = "auto",
   integrated_title_button_alignment = "Right",
-  initial_cols = 120,
-  initial_rows = 24,
+  initial_cols = 240,
+  initial_rows = 120,
    window_padding = {
       left = 0,
       right = 0,
