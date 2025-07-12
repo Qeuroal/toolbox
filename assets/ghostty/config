@@ -1,5 +1,7 @@
 # font
 font-family = "JetBrainsMonoNL Nerd Font"
+# 用于解决中文字体的问题
+font-codepoint-map = "U+4E00-U+9FFF,U+3400-U+4DBF = LXGW WenKai"
 font-size = 21
 font-thicken = true
 font-thicken-strength = 255
@@ -18,7 +20,7 @@ cursor-color = #ff6347
 cursor-text = #ffffff
 macos-option-as-alt = true
 adjust-underline-thickness = 2
-adjust-cursor-thickness = 3
+adjust-cursor-thickness = 9
 adjust-overline-thickness = 3
 cursor-opacity = 1
 
