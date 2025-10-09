@@ -1,5 +1,5 @@
 # font
-font-family = "JetBrainsMonoNL Nerd Font"
+font-family = "JetBrainsMonoNL Nerd Font, Microsoft YaHei"
 # 用于解决中文字体的问题
 font-codepoint-map = "U+4E00-U+9FFF,U+3400-U+4DBF = LXGW WenKai"
 font-size = 21
