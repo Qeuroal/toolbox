@@ -2,11 +2,13 @@
 #
 [general]
 live_config_reload = true
-working_directory = "C:\\Users\\Qeuroal"        # on Windows
+# # window
+# working_directory = "C:\\Users\\Qeuroal"        # on Windows
 
 # import external files
 import = [
-    "./onedark/onedarkpro_onedark.toml"
+  # "./onedark/onedarkpro_onedark.toml"
+  "./catppuccin/catppuccin-macchiato.toml"
 ]
 
 
@@ -56,8 +58,8 @@ option_as_alt = "OnlyLeft"
 # resize_increments = true      # make the dwm greater gap
 
 # # On Windows
-[terminal.shell]
-program = "cmd"
+# [terminal.shell]
+# program = "cmd"
 
 
 [scrolling]
@@ -81,6 +83,8 @@ save_to_clipboard = false
 [mouse]
 hide_when_typing = false
 
+[env]
+TERM = "xterm-256color"
 
 [keyboard]
 bindings = [

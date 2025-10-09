@@ -1,5 +1,7 @@
 # font
-font-family = "JetBrainsMonoNL Nerd Font"
+font-family = "JetBrainsMonoNL Nerd Font, Microsoft YaHei"
+# 用于解决中文字体的问题
+font-codepoint-map = "U+4E00-U+9FFF,U+3400-U+4DBF = LXGW WenKai"
 font-size = 21
 font-thicken = true
 font-thicken-strength = 255
@@ -17,9 +19,9 @@ cursor-style-blink = false
 cursor-color = #ff6347
 cursor-text = #ffffff
 macos-option-as-alt = true
-adjust-underline-thickness = 3
-adjust-cursor-thickness = 3
-adjust-overline-thickness = 3
+adjust-underline-thickness = 1
+adjust-cursor-thickness = 4
+adjust-overline-thickness = 2
 cursor-opacity = 1
 
 # mouse
@@ -49,4 +51,10 @@ split-divider-color = #3366ff
 # update
 auto-update = check
 
-
+# keymapping
+keybind = ctrl+shift+u=scroll_page_up
+keybind = ctrl+shift+d=scroll_page_down
+keybind = ctrl+shift+d=scroll_page_down
+keybind = super+comma=unbind
+keybind = ctrl+shift+f=write_scrollback_file:paste
+# keybind = ctrl+shift+f=write_scrollback_file:open
