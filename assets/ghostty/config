@@ -29,7 +29,7 @@ mouse-hide-while-typing = true
 
 # theme
 # onedarkpro, details: ghostty +list-themes
-theme = onedarkpro
+theme = catppuccin-macchiato.conf
 
 # background
 background-opacity = 0.9
