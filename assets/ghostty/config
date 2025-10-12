@@ -7,6 +7,7 @@ font-thicken = true
 font-thicken-strength = 255
 window-inherit-font-size = true
 window-title-font-family = "JetBrainsMonoNL Nerd Font"
+adjust-underline-position = 4
 
 # cell
 adjust-cell-width = 0
@@ -30,6 +31,8 @@ mouse-hide-while-typing = true
 # theme
 # onedarkpro, details: ghostty +list-themes
 theme = catppuccin-macchiato.conf
+# cursor-invert-fg-bg = true
+# window-theme = ghostty
 
 # background
 background-opacity = 0.9
@@ -52,9 +55,13 @@ split-divider-color = #3366ff
 auto-update = check
 
 # keymapping
+keybind = clear
 keybind = ctrl+shift+u=scroll_page_up
 keybind = ctrl+shift+d=scroll_page_down
 keybind = ctrl+shift+d=scroll_page_down
 keybind = super+comma=unbind
 keybind = ctrl+shift+f=write_scrollback_file:paste
 # keybind = ctrl+shift+f=write_scrollback_file:open
+
+# other
+# copy-on-select = clipboard
