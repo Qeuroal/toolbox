@@ -1,1 +1,56 @@
-api.addSearchAlias('oc', 'GitHub', 'https://github.com/search?q=%s');
+api.addSearchAlias('c', 'GitHub', 'https://github.com/search?q=%s');
+
+settings.theme = `
+.sk_theme {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    background: #1f2329;
+    color: #dcdfe4;
+    border-radius: 8px;
+    box-shadow: 0 14px 40px rgba(0,0,0,0.4);
+    border: 1px solid #3a3f4b;
+}
+
+.sk_theme input {
+    font-size: 20px;
+    padding: 15px;
+    color: #fff;
+    border-bottom: 1px solid #3a3f4b;
+}
+
+.sk_theme .url {
+    color: #61afef;
+    padding-left: 8px;
+}
+
+.sk_theme .omnibar_highlight {
+    color: #e5c07b;
+    font-weight: 700;
+}
+
+.sk_theme #sk_omnibarSearchResult ul li {
+    padding: 10px 15px;
+    border-radius: 4px;
+    margin: 2px 8px;
+}
+
+.sk_theme #sk_omnibarSearchResult ul li.focused {
+    background: #3e4451;
+    color: #fff;
+}
+
+.sk_theme .omnibar_timestamp, 
+.sk_theme .omnibar_visitcount {
+    color: #5c6370;
+    font-size: 12px;
+}
+
+#sk_status, #sk_find {
+    background: #1f2329;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 16px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+`;
