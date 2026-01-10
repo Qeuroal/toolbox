@@ -4,53 +4,74 @@ settings.theme = `
 .sk_theme {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     font-size: 15px;
-    background: #1f2329;
-    color: #dcdfe4;
+    background: #ffffff;
+    color: #444444;
     border-radius: 8px;
-    box-shadow: 0 14px 40px rgba(0,0,0,0.4);
-    border: 1px solid #3a3f4b;
+    box-shadow: 0 14px 40px rgba(0,0,0,0.25);
+    border: 1px solid #dbdbdb;
 }
 
 .sk_theme input {
     font-size: 20px;
     padding: 15px;
-    color: #fff;
-    border-bottom: 1px solid #3a3f4b;
+    color: #333333;
+    border-bottom: 1px solid #f0f0f0;
 }
 
 .sk_theme .url {
-    color: #61afef;
+    color: #0969da;
     padding-left: 8px;
 }
 
+.sk_theme .annotation {
+    color: #555;
+}
+
+/* 搜索词匹配高亮：亮蓝色 */
 .sk_theme .omnibar_highlight {
-    color: #e5c07b;
+    color: #007AFF;
     font-weight: 700;
 }
 
 .sk_theme #sk_omnibarSearchResult ul li {
     padding: 10px 15px;
-    border-radius: 4px;
-    margin: 2px 8px;
+    border-radius: 6px;
+    margin: 4px 8px;
+    transition: background 0.1s;
 }
 
+/* 选中项：经典的 Mac 蓝色背景，白字 */
 .sk_theme #sk_omnibarSearchResult ul li.focused {
-    background: #3e4451;
-    color: #fff;
+    background: #007AFF;
+    color: #ffffff;
+}
+
+/* 选中状态下，强制 URL 和高亮词变白，保证可读性 */
+.sk_theme #sk_omnibarSearchResult ul li.focused .url,
+.sk_theme #sk_omnibarSearchResult ul li.focused .omnibar_highlight,
+.sk_theme #sk_omnibarSearchResult ul li.focused .annotation {
+    color: #ffffff;
 }
 
 .sk_theme .omnibar_timestamp, 
 .sk_theme .omnibar_visitcount {
-    color: #5c6370;
+    color: #999999;
     font-size: 12px;
 }
 
+/* 选中状态下的辅助信息变浅灰 */
+.sk_theme #sk_omnibarSearchResult ul li.focused .omnibar_timestamp, 
+.sk_theme #sk_omnibarSearchResult ul li.focused .omnibar_visitcount {
+    color: #e0e0e0;
+}
+
 #sk_status, #sk_find {
-    background: #1f2329;
-    color: #fff;
+    background: #ffffff;
+    color: #333333;
     padding: 8px 12px;
     border-radius: 6px;
     font-size: 16px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    border: 1px solid #e0e0e0;
 }
 `;
